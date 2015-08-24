@@ -118,9 +118,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="lib\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="icon\1.ico" />
   </ItemGroup>
@@ -138,6 +136,26 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Json\Net20\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Net20\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Net20\Newtonsoft.Json.xml" />
+    <Content Include="lib\Json\Net35\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Net35\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Net35\Newtonsoft.Json.xml" />
+    <Content Include="lib\Json\Net40\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Net40\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Net40\Newtonsoft.Json.xml" />
+    <Content Include="lib\Json\Net45\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Net45\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Net45\Newtonsoft.Json.xml" />
+    <Content Include="lib\Json\Portable40\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Portable40\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Portable40\Newtonsoft.Json.xml" />
+    <Content Include="lib\Json\Portable\Newtonsoft.Json.dll" />
+    <Content Include="lib\Json\Portable\Newtonsoft.Json.pdb" />
+    <Resource Include="lib\Json\Portable\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
