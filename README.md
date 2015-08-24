@@ -31,3 +31,4 @@
 
 ## 使用到的开源库
 * 本软件使用的一个开源的Json.Net库，可以非常方便地使用它用Json格式存储配置信息或者加载Json格式的配置文件。其主页为：http://www.newtonsoft.com/json。
+
