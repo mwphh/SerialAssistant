@@ -1,0 +1,14 @@
+﻿<Window x:Class="WPFSerialAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSerialAssistant"
+        mc:Ignorable="d"
+        Title="串口助手(Alpha 0.1)" Height="600" Width="1024"
+        WindowStartupLocation="CenterScreen"
+        Icon="1.ico">
+    <Grid>
+        
+    </Grid>
+</Window>
