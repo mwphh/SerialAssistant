@@ -45,6 +45,7 @@ namespace WPFSerialAssistant
             if (configuration == null)
             {
                 configuration = new Dictionary<string, object>();
+                
             }
         }
 

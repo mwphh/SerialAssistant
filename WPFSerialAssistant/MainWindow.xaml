@@ -5,10 +5,227 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialAssistant"
         mc:Ignorable="d"
-        Title="串口助手(Alpha 0.1)" Height="600" Width="1024"
-        WindowStartupLocation="CenterScreen"
+        Title="串口助手(Alpha 0.1)" Height="550" Width="1024"
+        WindowStartupLocation="CenterScreen" MinHeight="550" MinWidth="1024"
         Icon="1.ico">
-    <Grid>
-        
-    </Grid>
+    <DockPanel Name="rootPanel">
+        <!--菜单栏-->
+        <Menu DockPanel.Dock="Top" Name="menuBar" Padding="2">
+            <MenuItem Header="文件(_F)">
+                <MenuItem Name="saveSerialDataMenuItem" Header="保存(_S)"></MenuItem>
+                <MenuItem Name="saveConfigMenuItem" Header="保存配置"></MenuItem>
+                <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)"></MenuItem>
+                <MenuItem Name="exitMenuItem" Header="退出(_X)"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="视图(_V)">
+                <MenuItem Name="serialSettingViewMenuItem" Header="串口设置面板" IsChecked="True"></MenuItem>
+                <MenuItem Name="serialSendSettingViewMenuItem" Header="发送设置面板" IsChecked="True"></MenuItem>
+                <MenuItem Name="serialRecvSettingViewMenuItem" Header="接收设置面板" IsChecked="True"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="帮助(_H)">
+                <MenuItem Name="aboutMenuItem" Header="关于(_A)"></MenuItem>
+                <MenuItem Name="helpMenuItem" Header="软件文档(_D)"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <!--状态栏-->
+        <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Background="#FF007ACC" Padding="2">
+            <StatusBarItem HorizontalAlignment="Left">
+                <TextBlock Name="statusInfoTextBlock" Foreground="White">准备就绪。</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar Name="progressBar" Visibility="Collapsed" Width="100" Height="10" Value="10" SmallChange="1" IsIndeterminate="True"></ProgressBar>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Name="timeDateTextBlock" Foreground="White">2015-08-24 星期二 00:04</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <DockPanel>
+                <Grid DockPanel.Dock="Left" Visibility="Visible">
+                    <GroupBox Name="serialPortConfigPanel" Header="串口配置面板" Margin="5,5,0,5" BorderThickness="1" BorderBrush="#FF7199E0">
+                        <DockPanel>
+                            <!--可用端口-->
+                            <Grid Margin="0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="可用端口" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,25,0"></TextBlock>
+                                <ComboBox Name="portsComboBox" Width="120" Grid.Column="1" Padding="5" IsEnabled="False"></ComboBox>
+                            </Grid>
+                            <!--通讯波特率-->
+                            <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="通讯波特率"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
+                                <ComboBox Name="baudRateComboBox" Width="120" Grid.Column="1" IsEditable="True" Padding="5">
+                                    <ComboBoxItem>1200</ComboBoxItem>
+                                    <ComboBoxItem>2400</ComboBoxItem>
+                                    <ComboBoxItem>4800</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">9600</ComboBoxItem>
+                                    <ComboBoxItem>19200</ComboBoxItem>
+                                    <ComboBoxItem>38400</ComboBoxItem>
+                                    <ComboBoxItem>115200</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <!--奇偶校验位-->
+                            <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="奇偶校验位"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
+                                <ComboBox Name="parityComboBox" Width="120" Grid.Column="1" Text="无(None)" Padding="5">
+                                    <ComboBoxItem Tag="None" IsSelected="True">无(None)</ComboBoxItem>
+                                    <ComboBoxItem Tag="Even">偶校验(Even)</ComboBoxItem>
+                                    <ComboBoxItem Tag="Odd">奇校验(Odd)</ComboBoxItem>
+                                    <ComboBoxItem Tag="Space">保留为0(Space)</ComboBoxItem>
+                                    <ComboBoxItem Tag="Mark">保留为1(Mark)</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <!--数据位-->
+                            <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="数据位"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
+                                <ComboBox Name="dataBitsComboBox" Width="120" Grid.Column="1" Padding="5">
+                                    <ComboBoxItem IsSelected="True">8</ComboBoxItem>
+                                    <ComboBoxItem>7</ComboBoxItem>
+                                    <ComboBoxItem>6</ComboBoxItem>
+                                    <ComboBoxItem>5</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <!--停止位-->
+                            <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="停止位"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
+                                <ComboBox Name="stopBitsComboBox" Width="120" Grid.Column="1" Padding="5">
+                                    <ComboBoxItem IsSelected="True">1</ComboBoxItem>
+                                    <ComboBoxItem>1.5</ComboBoxItem>
+                                    <ComboBoxItem>2</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <!--字节编码-->
+                            <Grid Margin="0,0,0,10" DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="字节编码"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
+                                <ComboBox Name="encodingComboBox" Width="120" Grid.Column="1" Padding="5">
+                                    <ComboBoxItem IsSelected="True">Default(ANSI)</ComboBoxItem>
+                                    <ComboBoxItem>ASCII</ComboBoxItem>
+                                    <ComboBoxItem>Unicode</ComboBoxItem>
+                                    <ComboBoxItem>UTF-8</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <Grid DockPanel.Dock="Bottom">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button Name="openClosePortButton" Grid.Column="0" Padding="3" Margin="5" IsEnabled="{Binding ElementName=portsComboBox, Path=IsEnabled}">打开</Button>
+                                <Button Name="findPortButton" Grid.Column="1" Padding="3" Margin="5">查找</Button>
+                            </Grid>
+                            <!--空的Grid，占位用-->
+                            <Grid></Grid>
+                        </DockPanel>
+                        
+                    </GroupBox>
+                </Grid>
+                <Grid Name="serialCommunicationConfigPanel" DockPanel.Dock="Right" Margin="0,5,5,5" Visibility="Visible">
+                    <GroupBox Header="通信设置面板" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="10*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="接收设置" Grid.Row="0" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                                <StackPanel>
+                                    <GroupBox Header="接收方式" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                                        <StackPanel>
+                                            <RadioButton Name="recvCharacterRadioButton" Margin="0,5" IsChecked="True">字符</RadioButton>
+                                            <RadioButton Name="recvHexRadioButton" Margin="0,0,50,5">十六进制</RadioButton>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <StackPanel>
+                                        <Button Name="showRecvDataDisableButton" Content="不显示接收数据" Margin="10,5" Padding="3"></Button>
+                                        <Button Name="saveRecvDataButton" Content="保存接收区数据" Margin="10,5" Padding="3"></Button>
+                                        <Button Name="clearRecvDataBoxButton" Content="清空接收区" Margin="10,5" Padding="3"></Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="发送设置" Grid.Row="1" Margin="5" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}" >
+                                <StackPanel>
+                                    <GroupBox Header="发送方式" Margin="5,5,5,0"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                                        <StackPanel>
+                                            <RadioButton Name="sendCharacterRadioButton" Content="字符" IsChecked="True" Margin="0,5"></RadioButton>
+                                            <RadioButton Name="sendHexRadioButton" Content="十六进制" Margin="0,0,0,5"></RadioButton>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox Header="发送内容" Margin="5" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                                        <StackPanel>
+                                            <RadioButton Name="manualInputRadioButton" Content="手动输入" Margin="0,5" IsChecked="True"></RadioButton>
+                                            <RadioButton Name="loadFileRadioButton" Content="加载文件" Margin="0,0,0,5"></RadioButton>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <Button Name="clearSendDataTextBox" Content="清空发送区" Padding="3" Margin="10,5,10,0"></Button>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid Name="autoSendConfigPanel" DockPanel.Dock="Bottom" Margin="5" Visibility="Visible">
+                    <GroupBox Header="自动发送设置面板"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Grid.Column="0" TextAlignment="Center" Padding="5">自动发送时间间隔</TextBlock>
+                                <TextBox Name="autoSendTimeoutTextBox" Text="1000" Grid.Column="1" Margin="10,0" Padding="5" Width="100"></TextBox>
+                                <ComboBox Name="timeUnitComboBox" Grid.Column="2" Padding="5" Width="60">
+                                    <ComboBoxItem IsSelected="True">毫秒</ComboBoxItem>
+                                    <ComboBoxItem>秒钟</ComboBoxItem>
+                                    <ComboBoxItem>分钟</ComboBoxItem>
+                                </ComboBox>
+                                
+                            </StackPanel>
+                            <CheckBox Name="autoSendEnableCheckBox" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0">使能自动发送</CheckBox>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="85*"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Header="接收区" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                        <RichTextBox Name="recvDataRichTextBox" Margin="2,5" BorderThickness="0" IsReadOnly="True">
+                        </RichTextBox>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="1" Header="发送区" IsEnabled="{Binding ElementName=portsComboBox, Path=IsEnabled}"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90*"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Name="sendDataTextBox" Grid.Column="0" VerticalAlignment="Center" Padding="5" Margin="5,0,0,0">Hello, world!</TextBox>
+                            <Button Name="sendDataButton" VerticalAlignment="Center" Grid.Column="1" Padding="3" Content="发送" Margin="5,0"></Button>
+                            <Grid></Grid>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
 </Window>
