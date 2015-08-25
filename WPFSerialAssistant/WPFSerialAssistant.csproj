@@ -77,6 +77,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core.cs" />
+    <Compile Include="SASerialPort.cs" />
+    <Compile Include="SATimer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="configuration\Configuration.cs" />
+    <Compile Include="EventHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

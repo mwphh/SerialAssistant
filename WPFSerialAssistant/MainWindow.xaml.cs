@@ -23,6 +23,7 @@ namespace WPFSerialAssistant
         public MainWindow()
         {
             InitializeComponent();
-        }
+            InitCore();
+        }        
     }
 }
