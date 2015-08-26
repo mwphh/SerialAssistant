@@ -150,7 +150,7 @@
                             </Grid.RowDefinitions>
                             <GroupBox Header="接收设置" Grid.Row="0" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                 <StackPanel>
-                                    <GroupBox Header="接收方式" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
+                                    <GroupBox Header="显示方式" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
                                             <RadioButton Name="recvCharacterRadioButton" Margin="0,5" IsChecked="True" Checked="recvCharacterRadioButton_Checked">字符</RadioButton>
                                             <RadioButton Name="recvHexRadioButton" Margin="0,0,50,5" Checked="recvHexRadioButton_Checked">十六进制</RadioButton>

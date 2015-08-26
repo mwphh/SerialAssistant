@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace WPFSerialAssistant
 {
@@ -162,7 +163,7 @@ namespace WPFSerialAssistant
 
         private void recvCharacterRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void recvHexRadioButton_Checked(object sender, RoutedEventArgs e)
