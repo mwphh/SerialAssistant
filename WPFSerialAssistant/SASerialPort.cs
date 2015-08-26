@@ -64,6 +64,8 @@ namespace WPFSerialAssistant
 
             try
             {
+                StopAutoSendDataTimer();
+                progressBar.Visibility = Visibility.Collapsed;
                 serialPort.Close();
                 Information(string.Format("成功关闭端口{0}。", serialPort.PortName));
                 flag = true;

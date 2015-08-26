@@ -73,8 +73,11 @@ namespace WPFSerialAssistant
 
         private void RecvDataBoxAppend(string textData)
         {
-            this.recvDataRichTextBox.AppendText(textData);
-            this.recvDataRichTextBox.ScrollToEnd();
+            if (showRecvDataCheckBox.IsChecked == true)
+            {
+                this.recvDataRichTextBox.AppendText(textData);
+                this.recvDataRichTextBox.ScrollToEnd();
+            }
         }
 
         private bool SendData()

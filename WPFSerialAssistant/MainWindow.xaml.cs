@@ -24,6 +24,6 @@ namespace WPFSerialAssistant
         {
             InitializeComponent();
             InitCore();
-        }        
+        }
     }
 }

@@ -157,7 +157,7 @@
                                         </StackPanel>
                                     </GroupBox>
                                     <StackPanel>
-                                        <Button Name="showRecvDataDisableButton" Content="不显示接收数据" Margin="10,5" Padding="3" Click="showRecvDataDisableButton_Click"></Button>
+                                        <CheckBox Name="showRecvDataCheckBox" Content="显示接收数据" IsChecked="True" Margin="10,5" Padding="0"/>
                                         <Button Name="saveRecvDataButton" Content="保存接收区数据" Margin="10,5" Padding="3" Click="saveRecvDataButton_Click"></Button>
                                         <Button Name="clearRecvDataBoxButton" Content="清空接收区" Margin="10,5" Padding="3" Click="clearRecvDataBoxButton_Click"></Button>
                                     </StackPanel>

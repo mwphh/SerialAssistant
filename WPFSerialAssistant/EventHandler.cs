@@ -170,11 +170,6 @@ namespace WPFSerialAssistant
 
         }
 
-        private void showRecvDataDisableButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void saveRecvDataButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -182,7 +177,7 @@ namespace WPFSerialAssistant
 
         private void clearRecvDataBoxButton_Click(object sender, RoutedEventArgs e)
         {
-
+            recvDataRichTextBox.Document.Blocks.Clear();
         }
 
         private void sendCharacterRadioButton_Click(object sender, RoutedEventArgs e)
@@ -207,7 +202,7 @@ namespace WPFSerialAssistant
 
         private void clearSendDataTextBox_Click(object sender, RoutedEventArgs e)
         {
-
+            sendDataTextBox.Clear();
         }
         #endregion
 
