@@ -31,10 +31,10 @@
         <!--状态栏-->
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Background="#FF007ACC" Padding="2">
             <StatusBarItem HorizontalAlignment="Left">
-                <TextBlock Name="statusInfoTextBlock" Foreground="White">就绪</TextBlock>
+                <TextBlock Name="statusInfoTextBlock" Foreground="White">欢迎使用串口助手！</TextBlock>
             </StatusBarItem>
             <StatusBarItem>
-                <ProgressBar Name="progressBar" Visibility="Collapsed" Width="100" Height="10" Value="10" SmallChange="1" IsIndeterminate="True"></ProgressBar>
+                <ProgressBar Name="progressBar" Foreground="White" BorderBrush="White" Background="{Binding ElementName=statusBar, Path=Background}" Visibility="Collapsed" Width="150" Height="10" Value="10" SmallChange="1" IsIndeterminate="True"></ProgressBar>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Name="timeDateTextBlock" Foreground="White"></TextBlock>
@@ -192,7 +192,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Grid.Column="0" TextAlignment="Center" Padding="5">自动发送时间间隔</TextBlock>
-                                <TextBox Name="autoSendTimeoutTextBox" Text="1000" Grid.Column="1" Margin="10,0" Padding="5" Width="100"></TextBox>
+                                <TextBox Name="autoSendIntervalTextBox" Text="1000" Grid.Column="1" Margin="10,0" Padding="5" Width="100"></TextBox>
                                 <ComboBox Name="timeUnitComboBox" Grid.Column="2" Padding="5" Width="60">
                                     <ComboBoxItem IsSelected="True">毫秒</ComboBoxItem>
                                     <ComboBoxItem>秒钟</ComboBoxItem>
