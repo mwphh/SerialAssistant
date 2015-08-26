@@ -87,12 +87,28 @@ namespace WPFSerialAssistant
 
         private void autoSendEnableCheckBox_Click(object sender, RoutedEventArgs e)
         {
-
+            if (autoSendEnableCheckBox.IsChecked == true)
+            {
+                Information(string.Format("使能串口自动发送功能，发送间隔：{0} {1}。", autoSendIntervalTextBox.Text, timeUnitComboBox.Text.Trim()));
+            }
+            else
+            {
+                Information("禁用串口自动发送功能。");
+                StopAutoSendDataTimer();
+                progressBar.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void sendDataButton_Click(object sender, RoutedEventArgs e)
         {
-            SendData();
+            if (autoSendEnableCheckBox.IsChecked == true)
+            {
+                AutoSendData();
+            }
+            else
+            {
+                SendData();
+            }
         }
 
         private void recvCharacterRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -150,6 +166,22 @@ namespace WPFSerialAssistant
         private void ClockTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDate();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AutoSendDataTimer_Tick(object sender, EventArgs e)
+        {
+            bool ret = false;
+            ret = SendData();
+
+            if (ret == false)
+            {
+                StopAutoSendDataTimer();
+            }
         }
         #endregion
 

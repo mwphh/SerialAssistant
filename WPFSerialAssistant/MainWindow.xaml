@@ -34,7 +34,7 @@
                 <TextBlock Name="statusInfoTextBlock" Foreground="White">欢迎使用串口助手！</TextBlock>
             </StatusBarItem>
             <StatusBarItem>
-                <ProgressBar Name="progressBar" Foreground="White" BorderBrush="White" Background="{Binding ElementName=statusBar, Path=Background}" Visibility="Collapsed" Width="150" Height="10" Value="10" SmallChange="1" IsIndeterminate="True"></ProgressBar>
+                <ProgressBar Name="progressBar" Foreground="White" BorderBrush="White" Background="{Binding ElementName=statusBar, Path=Background}" Visibility="Collapsed" Width="150" Height="10" Value="10" SmallChange="1" IsIndeterminate="True" Margin="10,0,0,0"></ProgressBar>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Name="timeDateTextBlock" Foreground="White"></TextBlock>

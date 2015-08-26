@@ -25,5 +25,29 @@ namespace WPFSerialAssistant
             clockTimer.Tick += ClockTimer_Tick;
             clockTimer.Start();
         }
+
+        /// <summary>
+        /// 用于自动发送串口数据的定时器
+        /// </summary>
+        private DispatcherTimer autoSendDataTimer = new DispatcherTimer();
+
+        private void InitAutoSendDataTimer()
+        {
+            autoSendDataTimer.IsEnabled = false;
+            autoSendDataTimer.Tick += AutoSendDataTimer_Tick;
+        }
+
+        private void StartAutoSendDataTimer(int interval)
+        {
+            autoSendDataTimer.IsEnabled = true;
+            autoSendDataTimer.Interval = TimeSpan.FromMilliseconds(interval);
+            autoSendDataTimer.Start();
+        }
+
+        private void StopAutoSendDataTimer()
+        {
+            autoSendDataTimer.IsEnabled = false;
+            autoSendDataTimer.Stop();
+        }
     }
 }

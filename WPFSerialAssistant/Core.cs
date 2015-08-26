@@ -16,6 +16,7 @@ namespace WPFSerialAssistant
         private void InitCore()
         {
             InitClockTimer();
+            InitAutoSendDataTimer();
             InitSerialPort();
         }
 
@@ -45,7 +46,7 @@ namespace WPFSerialAssistant
         private void Alert(string message)
         {
             // #FF68217A
-            statusBar.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x68, 0x21, 0x7A));
+            statusBar.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0x21, 0x2A));
             statusInfoTextBlock.Text = message;
         }
 
@@ -76,22 +77,66 @@ namespace WPFSerialAssistant
             this.recvDataRichTextBox.ScrollToEnd();
         }
 
-        private void SendData()
+        private bool SendData()
         {
             string textToSend = sendDataTextBox.Text;
             if (string.IsNullOrEmpty(textToSend))
             {
                 Alert("要发送的内容不能为空！");
+                return false;
             }
-            // 首先检查自动发送功能是否打开，如果没打开，则发送一次；否则，启动定时器，并且在定时器中断中发送
+
             if (autoSendEnableCheckBox.IsChecked == true)
             {
-                // StartAutoSendDataTimer();
+                return SerialPortWrite(textToSend, false);
             }
             else
             {
-                SerialPortWrite(textToSend);
+                return SerialPortWrite(textToSend);
             }
+        }
+
+        private void AutoSendData()
+        {
+            bool ret = SendData();
+
+            if (ret == false)
+            {
+                return;
+            }
+
+            // 启动自动发送定时器
+            StartAutoSendDataTimer(GetAutoSendDataInterval());
+
+            // 提示处于自动发送状态
+            progressBar.Visibility = Visibility.Visible;
+            Information("串口自动发送数据中...");
+        }
+
+        private int GetAutoSendDataInterval()
+        {
+            int interval = 1000;
+
+            if (int.TryParse(autoSendIntervalTextBox.Text.Trim(), out interval) == true)
+            {
+                string select = timeUnitComboBox.Text.Trim();
+
+                switch (select)
+                {
+                    case "毫秒":
+                        break;
+                    case "秒钟":
+                        interval *= 1000;
+                        break;
+                    case "分钟":
+                        interval = interval * 60 * 1000;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return interval;
         }
     }
 }

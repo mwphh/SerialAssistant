@@ -13,11 +13,10 @@ namespace WPFSerialAssistant
         /// <summary>
         /// SerialPort对象
         /// </summary>
-        private SerialPort serialPort = null;
+        private SerialPort serialPort = new SerialPort();
 
         private void InitSerialPort()
         {
-            serialPort = new SerialPort();
             serialPort.DataReceived += SerialPort_DataReceived;
         }
 
@@ -68,7 +67,6 @@ namespace WPFSerialAssistant
                 serialPort.Close();
                 Information(string.Format("成功关闭端口{0}。", serialPort.PortName));
                 flag = true;
-
             }
             catch (Exception ex)
             {
@@ -176,27 +174,40 @@ namespace WPFSerialAssistant
             return enc;
         }
 
-        private void SerialPortWrite(string textData)
+        private bool SerialPortWrite(string textData)
+        {
+            return SerialPortWrite(textData, true);
+        }
+
+        private bool SerialPortWrite(string textData, bool reportEnable)
         {
             if (serialPort == null)
             {
-                return;
+                return false;
             }
 
             if (serialPort.IsOpen == false)
             {
-                return;
+                Alert("串口未打开，无法发送数据。");
+                return false;
             }
 
             try
             {
                 serialPort.Write(textData);
-                Information(string.Format("成功发送：{0}。", textData));
+                if (reportEnable)
+                {
+                    // 报告发送成功的消息，提示用户。
+                    Information(string.Format("成功发送：{0}。", textData));
+                }
             }
             catch (Exception ex)
             {
                 Alert(ex.Message);
+                return false;
             }
+
+            return true;
         }
     }
 }
