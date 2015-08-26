@@ -16,8 +16,10 @@ namespace WPFSerialAssistant
         private void InitCore()
         {
             InitClockTimer();
+            InitSerialPort();
         }
 
+        #region 状态栏
         /// <summary>
         /// 更新时间信息
         /// </summary>
@@ -37,7 +39,7 @@ namespace WPFSerialAssistant
         }
 
         /// <summary>
-        /// 警告信息提示
+        /// 警告信息提示（一直提示）
         /// </summary>
         /// <param name="message">提示信息</param>
         private void Alert(string message)
@@ -64,6 +66,32 @@ namespace WPFSerialAssistant
                 statusBar.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC));
             }
             statusInfoTextBlock.Text = message;
+        }
+
+        #endregion
+
+        private void RecvDataBoxAppend(string textData)
+        {
+            this.recvDataRichTextBox.AppendText(textData);
+            this.recvDataRichTextBox.ScrollToEnd();
+        }
+
+        private void SendData()
+        {
+            string textToSend = sendDataTextBox.Text;
+            if (string.IsNullOrEmpty(textToSend))
+            {
+                Alert("要发送的内容不能为空！");
+            }
+            // 首先检查自动发送功能是否打开，如果没打开，则发送一次；否则，启动定时器，并且在定时器中断中发送
+            if (autoSendEnableCheckBox.IsChecked == true)
+            {
+                // StartAutoSendDataTimer();
+            }
+            else
+            {
+                SerialPortWrite(textToSend);
+            }
         }
     }
 }

@@ -11,9 +11,15 @@ namespace WPFSerialAssistant
     public partial class MainWindow : Window
     {
         /// <summary>
-        /// SerialPort对象实例
+        /// SerialPort对象
         /// </summary>
-        private SerialPort serialPort = new SerialPort();
+        private SerialPort serialPort = null;
+
+        private void InitSerialPort()
+        {
+            serialPort = new SerialPort();
+            serialPort.DataReceived += SerialPort_DataReceived;
+        }
 
         /// <summary>
         /// 查找端口
@@ -168,6 +174,29 @@ namespace WPFSerialAssistant
             }
 
             return enc;
+        }
+
+        private void SerialPortWrite(string textData)
+        {
+            if (serialPort == null)
+            {
+                return;
+            }
+
+            if (serialPort.IsOpen == false)
+            {
+                return;
+            }
+
+            try
+            {
+                serialPort.Write(textData);
+                Information(string.Format("成功发送：{0}。", textData));
+            }
+            catch (Exception ex)
+            {
+                Alert(ex.Message);
+            }
         }
     }
 }

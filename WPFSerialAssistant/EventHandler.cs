@@ -92,7 +92,7 @@ namespace WPFSerialAssistant
 
         private void sendDataButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SendData();
         }
 
         private void recvCharacterRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -150,6 +150,23 @@ namespace WPFSerialAssistant
         private void ClockTimer_Tick(object sender, EventArgs e)
         {
             UpdateTimeDate();
+        }
+        #endregion
+
+        #region EventHandler for serialPort
+        private void SerialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            System.IO.Ports.SerialPort sp = sender as System.IO.Ports.SerialPort;
+
+            if (sp != null)
+            {
+                string textBuffer = sp.ReadExisting();
+
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    RecvDataBoxAppend(textBuffer);
+                }));
+            }
         }
         #endregion
     }
