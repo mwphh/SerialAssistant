@@ -211,6 +211,7 @@
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="接收区" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                         <RichTextBox Name="recvDataRichTextBox" Margin="2,5" BorderThickness="0" IsReadOnly="True">
+                            <FlowDocument LineHeight="1.5"></FlowDocument>
                         </RichTextBox>
                     </GroupBox>
 
