@@ -28,11 +28,20 @@
 |****|*******|
 
 ## 测试图片
-1. ![启动初始化截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/1.PNG)
-2. ![自动发送测试截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/2.PNG)
-3. ![隐藏左侧设置面板截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/3.PNG)
-4. ![隐藏下侧设置面板截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/4.PNG)
-5. ![隐藏右侧设置面板截图（无干扰视图模式，让用户专注于数据的收发）](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/5.PNG)
+### 启动初始化截图
+![启动初始化截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/1.PNG)
+
+### 自动发送测试截图
+![自动发送测试截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/2.PNG)
+
+### 隐藏左侧设置面板截图
+![隐藏左侧设置面板截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/3.PNG)
+
+### 隐藏下侧设置面板截图
+![隐藏下侧设置面板截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/4.PNG)
+
+### 隐藏右侧设置面板截图（无干扰视图模式，让用户专注于数据的收发）
+![隐藏右侧设置面板截图（无干扰视图模式，让用户专注于数据的收发）](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/5.PNG)
 
 ## 使用到的开源库
 * 本软件使用的一个开源的Json.Net库，可以非常方便地使用它用Json格式存储配置信息或者加载Json格式的配置文件。其主页为：http://www.newtonsoft.com/json。
