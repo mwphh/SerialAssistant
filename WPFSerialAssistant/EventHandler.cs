@@ -32,22 +32,71 @@ namespace WPFSerialAssistant
 
         private void serialSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            bool state = serialSettingViewMenuItem.IsChecked;
 
+            if (state == false)
+            {
+                serialPortConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                serialPortConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            serialSettingViewMenuItem.IsChecked = !state;
+            compactViewMenuItem.IsChecked = false;
         }
 
         private void autoSendDataSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            bool state = autoSendDataSettingViewMenuItem.IsChecked;
 
+            if (state == false)
+            {
+                autoSendConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                autoSendConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            autoSendDataSettingViewMenuItem.IsChecked = !state;
+            compactViewMenuItem.IsChecked = false;
         }
 
         private void serialCommunicationSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            bool state = serialCommunicationSettingViewMenuItem.IsChecked;
 
+            if (state == false)
+            {
+                serialCommunicationConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            serialCommunicationSettingViewMenuItem.IsChecked = !state;
+            compactViewMenuItem.IsChecked = false;
         }
 
         private void compactViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            bool state = compactViewMenuItem.IsChecked;
 
+            if (state == false)
+            {
+                serialSettingViewMenuItem.IsChecked = false;
+                autoSendDataSettingViewMenuItem.IsChecked = false;
+                serialCommunicationSettingViewMenuItem.IsChecked = false;
+
+                serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
+                autoSendConfigPanel.Visibility = Visibility.Collapsed;
+                serialPortConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            compactViewMenuItem.IsChecked = true;
         }
 
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
