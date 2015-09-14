@@ -211,6 +211,12 @@ namespace WPFSerialAssistant
         {
             string confStr = "";
             Configuration conf = null;
+
+            if (System.IO.File.Exists(path) == false)
+            {
+                return null;
+            }
+
             // 读取配置信息
             using (System.IO.StreamReader sr = new System.IO.StreamReader(path, defaultConfEncoding))
             {

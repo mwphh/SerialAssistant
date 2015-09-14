@@ -15,6 +15,10 @@ namespace WPFSerialAssistant
         /// </summary>
         private void InitCore()
         {
+            // 加载配置信息
+            LoadConfig();
+
+            // 其他模块初始化
             InitClockTimer();
             InitAutoSendDataTimer();
             InitSerialPort();
@@ -141,5 +145,160 @@ namespace WPFSerialAssistant
 
             return interval;
         }
+
+        #region 配置信息
+        // 
+        // 目前保存的配置信息如下：
+        // 1. 波特率
+        // 2. 奇偶校验位
+        // 3. 数据位
+        // 4. 停止位
+        // 5. 字节编码
+        // 6. 发送区文本内容
+        // 7. 自动发送时间间隔
+        // 8. 窗口状态：最大化|高度+宽度
+        // 9. 面板显示状态
+        //
+
+        /// <summary>
+        /// 保存配置信息
+        /// </summary>
+        private void SaveConfig()
+        {
+            // 配置对象实例
+            Configuration config = new Configuration();
+
+            // 保存波特率
+            AddBaudRate(config);
+
+            // 保存奇偶校验位
+            config.Add("parity", parityComboBox.SelectedIndex);
+
+            // 保存数据位
+            config.Add("dataBits", dataBitsComboBox.SelectedIndex);
+
+            // 保存停止位
+            config.Add("stopBits", stopBitsComboBox.SelectedIndex);
+
+            // 字节编码
+            config.Add("encoding", encodingComboBox.SelectedIndex);
+
+            // 保存发送区文本内容
+            config.Add("sendDataTextBoxText", sendDataTextBox.Text);
+
+            // 自动发送时间间隔
+            config.Add("autoSendDataInterval", autoSendIntervalTextBox.Text);
+            config.Add("timeUnit", timeUnitComboBox.SelectedIndex);
+
+            // 窗口状态信息
+            config.Add("maxmized", this.WindowState == WindowState.Maximized);  
+            config.Add("windowWidth", this.Width);
+            config.Add("windowHeight", this.Height);
+            config.Add("windowLeft", this.Left);
+            config.Add("windowTop", this.Top);
+
+            // 面板显示状态
+            config.Add("serialPortConfigPanelVisible", serialPortConfigPanel.Visibility == Visibility.Visible);
+            config.Add("autoSendConfigPanelVisible", autoSendConfigPanel.Visibility == Visibility.Visible);
+            config.Add("serialCommunicationConfigPanelVisible", serialCommunicationConfigPanel.Visibility == Visibility.Visible);
+
+            // 保存配置信息到磁盘中
+            Configuration.Save(config, @"Config\default.conf");
+        }
+
+        /// <summary>
+        /// 将波特率列表添加进去
+        /// </summary>
+        /// <param name="conf"></param>
+        private void AddBaudRate(Configuration conf)
+        {
+            conf.Add("baudRate", baudRateComboBox.Text);
+        }
+
+        /// <summary>
+        /// 加载配置信息
+        /// </summary>
+        private void LoadConfig()
+        {
+            Configuration config = Configuration.Read(@"Config\default.conf");
+
+            if (config == null)
+            {
+                return;
+            }
+
+            // 获取波特率
+            string baudRateStr = config.GetString("baudRate");
+            baudRateComboBox.Text = baudRateStr;
+
+            // 获取奇偶校验位
+            int parityIndex = config.GetInt("parity");
+            parityComboBox.SelectedIndex = parityIndex;
+
+            // 获取数据位
+            int dataBitsIndex = config.GetInt("dataBits");
+            dataBitsComboBox.SelectedIndex = dataBitsIndex;
+
+            // 获取停止位
+            int stopBitsIndex = config.GetInt("stopBits");
+            stopBitsComboBox.SelectedIndex = stopBitsIndex;
+
+            // 获取编码
+            int encodingIndex = config.GetInt("encoding");
+            encodingComboBox.SelectedIndex = encodingIndex;
+
+            // 获取发送区内容
+            string sendDataText = config.GetString("sendDataTextBoxText");
+            sendDataTextBox.Text = sendDataText;
+
+            // 获取自动发送数据时间间隔
+            string interval = config.GetString("autoSendDataInterval");
+            int timeUnitIndex = config.GetInt("timeUnit");
+            autoSendIntervalTextBox.Text = interval;
+            timeUnitComboBox.SelectedIndex = timeUnitIndex;
+
+            // 窗口状态
+            if (config.GetBool("maxmized"))
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            double width = config.GetDouble("windowWidth");
+            double height = config.GetDouble("windowHeight");
+            double top = config.GetDouble("windowTop");
+            double left = config.GetDouble("windowLeft");
+            this.Width = width;
+            this.Height = height;
+            this.Top = top;
+            this.Left = left;
+
+            // 面板显示状态
+            if (config.GetBool("serialPortConfigPanelVisible"))
+            {
+                serialPortConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                serialPortConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            if (config.GetBool("autoSendConfigPanelVisible"))
+            {
+                autoSendConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                autoSendConfigPanel.Visibility = Visibility.Collapsed;
+            }
+
+            if (config.GetBool("serialCommunicationConfigPanelVisible"))
+            {
+                serialCommunicationConfigPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
     }
 }

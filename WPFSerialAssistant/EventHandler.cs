@@ -18,12 +18,16 @@ namespace WPFSerialAssistant
 
         private void saveConfigMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveConfig();
+            // 状态栏显示保存成功
+            Information("配置信息保存成功。");
         }
 
         private void loadConfigMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            LoadConfig();
+            // 状态栏显示加载成功
+            Information("配置信息加载成功。");
         }
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
