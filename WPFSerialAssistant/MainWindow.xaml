@@ -14,14 +14,14 @@
             <MenuItem Header="文件(_F)">
                 <MenuItem Name="saveSerialDataMenuItem" Header="保存(_S)" Click="saveSerialDataMenuItem_Click"></MenuItem>
                 <MenuItem Name="saveConfigMenuItem" Header="保存配置" Click="saveConfigMenuItem_Click"></MenuItem>
-                <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)" Click="loadConfigMenuItem_Click"></MenuItem>
+                <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)" Click="loadConfigMenuItem_Click" Visibility="Collapsed"></MenuItem>
                 <MenuItem Name="exitMenuItem" Header="退出(_X)" Click="exitMenuItem_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="视图(_V)">
                 <MenuItem Name="serialSettingViewMenuItem" Header="串口配置面板" IsChecked="True" Click="serialSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="autoSendDataSettingViewMenuItem" Header="自动发送设置面板" IsChecked="True" Click="autoSendDataSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="serialCommunicationSettingViewMenuItem" Header="通信设置面板" IsChecked="True" Click="serialCommunicationSettingViewMenuItem_Click"></MenuItem>
-                <MenuItem Name="compactViewMenuItem" Header="简洁视图" IsChecked="False" Click="compactViewMenuItem_Click"></MenuItem>
+                <MenuItem Name="compactViewMenuItem" Header="简洁视图" IsChecked="False" Click="compactViewMenuItem_Click" Visibility="Collapsed"></MenuItem>
             </MenuItem>
             <MenuItem Header="帮助(_H)">
                 <MenuItem Name="aboutMenuItem" Header="关于(_A)" Click="aboutMenuItem_Click"></MenuItem>
