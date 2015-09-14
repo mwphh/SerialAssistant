@@ -16,7 +16,7 @@
 
 ## 测试图片
 ### 启动初始化截图
-![启动初始化截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/1.png)
+![启动初始化截图](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/1.PNG)
 
 ### 打开端口并接收数据
 ![打开端口并接收数据](https://code.csdn.net/u011193957/serialassistant/blob/master/DebugPics/2.PNG)
@@ -40,7 +40,7 @@
 2. CSDN Code地址：https://code.csdn.net/u011193957/automaticwatersupplysystem
 
 # 更新日志
-## 2015年9月14日 周一
+## 2015年9月15日 周二
 ### Features
 * 新增 配置信息保存功能，目前保存的配置信息有：
  * 波特率
@@ -58,4 +58,7 @@
 ### Other
 * 移除菜单“加载配置(L)”，改为软件启动后自动查找配置并加载
 * 移除菜单“简洁模式”，当手动将三个面板全部隐藏后自动进入“简洁模式”，暂时去除一键进入“简洁模式”功能菜单
+
+### Bug fix
+* 加载面板显示配置信息后，面板状态与对应菜单项显示不一致的问题 
 
