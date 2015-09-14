@@ -274,28 +274,34 @@ namespace WPFSerialAssistant
             // 面板显示状态
             if (config.GetBool("serialPortConfigPanelVisible"))
             {
+                serialSettingViewMenuItem.IsChecked = true;
                 serialPortConfigPanel.Visibility = Visibility.Visible;
             }
             else
             {
+                serialSettingViewMenuItem.IsChecked = false;
                 serialPortConfigPanel.Visibility = Visibility.Collapsed;
             }
 
             if (config.GetBool("autoSendConfigPanelVisible"))
             {
+                autoSendDataSettingViewMenuItem.IsChecked = true;
                 autoSendConfigPanel.Visibility = Visibility.Visible;
             }
             else
             {
+                autoSendDataSettingViewMenuItem.IsChecked = false;
                 autoSendConfigPanel.Visibility = Visibility.Collapsed;
             }
 
             if (config.GetBool("serialCommunicationConfigPanelVisible"))
             {
+                serialCommunicationSettingViewMenuItem.IsChecked = true;
                 serialCommunicationConfigPanel.Visibility = Visibility.Visible;
             }
             else
             {
+                serialCommunicationSettingViewMenuItem.IsChecked = false;
                 serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
             }
         }
