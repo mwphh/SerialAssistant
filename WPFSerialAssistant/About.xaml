@@ -1,0 +1,33 @@
+﻿<Window x:Class="WPFSerialAssistant.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSerialAssistant"
+        mc:Ignorable="d" Name="AboutWindow"
+        Title="关于串口助手" Height="200" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Icon="1.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="5">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                串口调试助手
+            </TextBlock>
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                Serial Assistant Based on WPF
+            </TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <StackPanel Grid.Column="0" Margin="10">
+                <TextBlock>版本编号：Verison 1.1</TextBlock>
+                <TextBlock>更新日期：2015年9月20日 星期日</TextBlock>
+                <TextBlock>软件作者：Christopher</TextBlock>
+                <TextBlock>反馈邮箱：christopherlee1993@outlook.com</TextBlock>
+                <TextBlock>小小说明：开放源码，采用MIT协议。望共同学习进步。</TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

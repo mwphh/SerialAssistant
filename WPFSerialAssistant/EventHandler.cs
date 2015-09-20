@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace WPFSerialAssistant
 {
@@ -32,7 +28,7 @@ namespace WPFSerialAssistant
 
         private void exitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void serialSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
@@ -46,10 +42,14 @@ namespace WPFSerialAssistant
             else
             {
                 serialPortConfigPanel.Visibility = Visibility.Collapsed;
+                if (IsCompactViewMode())
+                {
+                    serialPortConfigPanel.Visibility = Visibility.Visible;
+                    EnterCompactViewMode();
+                }
             }
 
             serialSettingViewMenuItem.IsChecked = !state;
-            compactViewMenuItem.IsChecked = false;
         }
 
         private void autoSendDataSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
@@ -63,10 +63,14 @@ namespace WPFSerialAssistant
             else
             {
                 autoSendConfigPanel.Visibility = Visibility.Collapsed;
+                if (IsCompactViewMode())
+                {
+                    autoSendConfigPanel.Visibility = Visibility.Visible;
+                    EnterCompactViewMode();
+                }
             }
 
             autoSendDataSettingViewMenuItem.IsChecked = !state;
-            compactViewMenuItem.IsChecked = false;
         }
 
         private void serialCommunicationSettingViewMenuItem_Click(object sender, RoutedEventArgs e)
@@ -80,33 +84,33 @@ namespace WPFSerialAssistant
             else
             {
                 serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
+
+                if (IsCompactViewMode())
+                {
+                    serialCommunicationConfigPanel.Visibility = Visibility.Visible;
+                    EnterCompactViewMode();
+                }
             }
 
             serialCommunicationSettingViewMenuItem.IsChecked = !state;
-            compactViewMenuItem.IsChecked = false;
         }
 
         private void compactViewMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            bool state = compactViewMenuItem.IsChecked;
-
-            if (state == false)
+            if (IsCompactViewMode())
             {
-                serialSettingViewMenuItem.IsChecked = false;
-                autoSendDataSettingViewMenuItem.IsChecked = false;
-                serialCommunicationSettingViewMenuItem.IsChecked = false;
-
-                serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
-                autoSendConfigPanel.Visibility = Visibility.Collapsed;
-                serialPortConfigPanel.Visibility = Visibility.Collapsed;
+                RestoreViewMode();
             }
-
-            compactViewMenuItem.IsChecked = true;
+            else
+            {
+                EnterCompactViewMode();
+            }
         }
 
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            WPFSerialAssistant.About about = new About();
+            about.ShowDialog();            
         }
 
         private void helpMenuItem_Click(object sender, RoutedEventArgs e)
@@ -177,7 +181,7 @@ namespace WPFSerialAssistant
 
         private void saveRecvDataButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveData(GetSaveDataPath());
         }
 
         private void clearRecvDataBoxButton_Click(object sender, RoutedEventArgs e)
@@ -232,6 +236,60 @@ namespace WPFSerialAssistant
                 StopAutoSendDataTimer();
             }
         }
+
+        /// <summary>
+        /// 窗口关闭前拦截
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // 释放没有关闭的端口资源
+            if (serialPort.IsOpen)
+            {
+                ClosePort();
+            }
+
+            // 提示是否需要保存配置到文件中
+            if (MessageBox.Show("是否在退出前保存软件配置？", "小贴士", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            {
+                SaveConfig();
+            }
+        }
+
+        /// <summary>
+        /// 捕获窗口按键。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Ctrl+S保存数据
+            if (e.Key == Key.S && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
+            {
+                SaveData(GetSaveDataPath());
+            }
+
+            // Ctrl+Enter 进入/退出简洁视图模式
+            if (e.Key == Key.Enter && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
+            {
+                if (IsCompactViewMode())
+                {
+                    RestoreViewMode();
+                }
+                else
+                {
+                    EnterCompactViewMode();
+                }
+            }
+
+            // Enter发送数据
+            if (e.Key == Key.Enter)
+            {
+                SendData();
+            }
+        }
+
         #endregion
 
         #region EventHandler for serialPort

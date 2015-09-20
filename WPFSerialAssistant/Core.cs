@@ -22,6 +22,9 @@ namespace WPFSerialAssistant
             InitClockTimer();
             InitAutoSendDataTimer();
             InitSerialPort();
+
+            // 查找可以使用的端口号
+            FindPorts();
         }
 
         #region 状态栏
@@ -218,13 +221,13 @@ namespace WPFSerialAssistant
         /// <summary>
         /// 加载配置信息
         /// </summary>
-        private void LoadConfig()
+        private bool LoadConfig()
         {
             Configuration config = Configuration.Read(@"Config\default.conf");
 
             if (config == null)
             {
-                return;
+                return false;
             }
 
             // 获取波特率
@@ -304,6 +307,8 @@ namespace WPFSerialAssistant
                 serialCommunicationSettingViewMenuItem.IsChecked = false;
                 serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
             }
+
+            return true;
         }
         #endregion
     }

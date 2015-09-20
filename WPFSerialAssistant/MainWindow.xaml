@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialAssistant"
         mc:Ignorable="d"
-        Title="串口助手(Version 1.0)" Height="550" Width="1024"
-        WindowStartupLocation="CenterScreen" MinHeight="550" MinWidth="1024"
-        Icon="1.ico">
+        Title="串口助手(Version 1.0)" Height="600" Width="1024"
+        MinHeight="550" MinWidth="1024"
+        Icon="1.ico" Closing="Window_Closing" PreviewKeyDown="Window_KeyDown">
     <DockPanel Name="rootPanel">
         <!--菜单栏-->
         <Menu DockPanel.Dock="Top" Name="menuBar" Padding="2">
             <MenuItem Header="文件(_F)">
-                <MenuItem Name="saveSerialDataMenuItem" Header="保存(_S)" Click="saveSerialDataMenuItem_Click"></MenuItem>
+                <MenuItem Name="saveSerialDataMenuItem" Header="保存(_S)" Click="saveSerialDataMenuItem_Click" Visibility="Collapsed"></MenuItem>
                 <MenuItem Name="saveConfigMenuItem" Header="保存配置" Click="saveConfigMenuItem_Click"></MenuItem>
                 <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)" Click="loadConfigMenuItem_Click" Visibility="Collapsed"></MenuItem>
-                <MenuItem Name="exitMenuItem" Header="退出(_X)" Click="exitMenuItem_Click"></MenuItem>
+                <MenuItem Name="exitMenuItem" Header="退出" Click="exitMenuItem_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="视图(_V)">
                 <MenuItem Name="serialSettingViewMenuItem" Header="串口配置面板" IsChecked="True" Click="serialSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="autoSendDataSettingViewMenuItem" Header="自动发送设置面板" IsChecked="True" Click="autoSendDataSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="serialCommunicationSettingViewMenuItem" Header="通信设置面板" IsChecked="True" Click="serialCommunicationSettingViewMenuItem_Click"></MenuItem>
-                <MenuItem Name="compactViewMenuItem" Header="简洁视图" IsChecked="False" Click="compactViewMenuItem_Click" Visibility="Collapsed"></MenuItem>
+                <MenuItem Name="compactViewMenuItem" Header="简洁视图" IsChecked="False" Click="compactViewMenuItem_Click" Visibility="Visible"></MenuItem>
             </MenuItem>
             <MenuItem Header="帮助(_H)">
                 <MenuItem Name="aboutMenuItem" Header="关于(_A)" Click="aboutMenuItem_Click"></MenuItem>
@@ -136,7 +136,18 @@
                                 <Button Name="findPortButton" Click="findPortButton_Click" Grid.Column="1" Padding="3" Margin="5">查找</Button>
                             </Grid>
                             <!--空的Grid，占位用-->
-                            <Grid></Grid>
+                            <Grid>
+                                <StackPanel Margin="5">
+                                    <TextBlock Foreground="#FF0078D7" FontSize="16" Padding="5">主要功能：</TextBlock>
+                                    <TextBlock Padding="5">1. 可自由显示、隐藏的设置面板</TextBlock>
+                                    <TextBlock Padding="5">2. 简洁视图模式，专注于数据收发</TextBlock>
+                                    <TextBlock Padding="5">3. 软件主要配置可保存并恢复</TextBlock>
+                                    <TextBlock Foreground="#FF0078D7" FontSize="16" Padding="5">快捷键提示：</TextBlock>
+                                    <TextBlock Padding="5">1. Ctrl+S: 保存接收区数据</TextBlock>
+                                    <TextBlock Padding="5">2. Ctrl+Enter: 进/退简洁视图模式</TextBlock>
+                                    <TextBlock Padding="5">3. Enter: 发送数据</TextBlock>
+                                </StackPanel>
+                            </Grid>
                         </DockPanel>
                         
                     </GroupBox>
@@ -158,7 +169,7 @@
                                     </GroupBox>
                                     <StackPanel>
                                         <CheckBox Name="showRecvDataCheckBox" Content="显示接收数据" IsChecked="True" Margin="10,5" Padding="0"/>
-                                        <Button Name="saveRecvDataButton" Content="保存接收区数据" Margin="10,5" Padding="3" Click="saveRecvDataButton_Click"></Button>
+                                        <Button Name="saveRecvDataButton" Content="保存接收区数据" Margin="10,5" Padding="3" Click="saveRecvDataButton_Click" ToolTip="使用Ctrl+S也可以快捷保存哦！"/>
                                         <Button Name="clearRecvDataBoxButton" Content="清空接收区" Margin="10,5" Padding="3" Click="clearRecvDataBoxButton_Click"></Button>
                                     </StackPanel>
                                 </StackPanel>
@@ -192,7 +203,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Grid.Column="0" TextAlignment="Center" Padding="5">自动发送时间间隔</TextBlock>
-                                <TextBox Name="autoSendIntervalTextBox" Text="1000" Grid.Column="1" Margin="10,0" Padding="5" Width="100"></TextBox>
+                                <TextBox Name="autoSendIntervalTextBox" Text="1000" Grid.Column="1" Margin="10,0" Padding="5" Width="100" ToolTip="自动发送时间只有在启动自动发送前修改有效；发送过程中修改时间只会在下一次启动自动发送时生效。"></TextBox>
                                 <ComboBox Name="timeUnitComboBox" Grid.Column="2" Padding="5" Width="60">
                                     <ComboBoxItem IsSelected="True">毫秒</ComboBoxItem>
                                     <ComboBoxItem>秒钟</ComboBoxItem>
@@ -200,7 +211,7 @@
                                 </ComboBox>
                                 
                             </StackPanel>
-                            <CheckBox Name="autoSendEnableCheckBox" Click="autoSendEnableCheckBox_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0">使能自动发送</CheckBox>
+                            <CheckBox Name="autoSendEnableCheckBox" Click="autoSendEnableCheckBox_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" ToolTip="使能后，必须要再次点击发送按钮才可以启动自动发送。">使能自动发送</CheckBox>
                         </Grid>
                     </GroupBox>
                 </Grid>

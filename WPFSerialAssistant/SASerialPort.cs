@@ -35,7 +35,7 @@ namespace WPFSerialAssistant
             else
             {
                 portsComboBox.IsEnabled = false;
-                Alert("抱歉，没有查找到端口。");
+                Alert("Oops，没有查找到可用端口；您可以点击“查找”按钮手动查找。");
             }
         }
 
