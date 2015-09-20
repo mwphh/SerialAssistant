@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialAssistant"
         mc:Ignorable="d"
-        Title="串口助手(Alpha 0.1)" Height="550" Width="1024"
+        Title="串口助手(Version 1.0)" Height="550" Width="1024"
         WindowStartupLocation="CenterScreen" MinHeight="550" MinWidth="1024"
         Icon="1.ico">
     <DockPanel Name="rootPanel">
