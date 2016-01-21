@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace WPFSerialAssistant
 {
@@ -15,9 +17,14 @@ namespace WPFSerialAssistant
         /// </summary>
         private SerialPort serialPort = new SerialPort();
 
+        // 需要一个定时器用来，用来保证即使缓冲区没满也能够及时将数据处理掉，防止一直没有到达
+        // 阈值，而导致数据在缓冲区中一直得不到合适的处理。
+        private DispatcherTimer checkTimer = new DispatcherTimer();
+
         private void InitSerialPort()
         {
             serialPort.DataReceived += SerialPort_DataReceived;
+            InitCheckTimer();
         }
 
         /// <summary>
@@ -47,6 +54,7 @@ namespace WPFSerialAssistant
             try
             {
                 serialPort.Open();
+                serialPort.DiscardInBuffer();
                 Information(string.Format("成功打开端口{0}, 波特率{1}。", serialPort.PortName, serialPort.BaudRate.ToString()));
                 flag = true;
             }
@@ -178,7 +186,8 @@ namespace WPFSerialAssistant
 
         private bool SerialPortWrite(string textData)
         {
-            return SerialPortWrite(textData, true);
+            SerialPortWrite(textData, false);
+            return false;
         }
 
         private bool SerialPortWrite(string textData, bool reportEnable)
@@ -196,7 +205,24 @@ namespace WPFSerialAssistant
 
             try
             {
-                serialPort.Write(textData);
+                if (sendMode == SendMode.Character)
+                {
+                    serialPort.Write(textData);
+                }
+                else if (sendMode == SendMode.Hex)
+                {
+                    string[] grp = textData.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    List<byte> list = new List<byte>();
+
+                    foreach (var item in grp)
+                    {
+                        list.Add(Convert.ToByte(item, 16));
+                    }
+             
+                    serialPort.Write(list.ToArray(), 0, list.Count);
+                }
+
                 if (reportEnable)
                 {
                     // 报告发送成功的消息，提示用户。
@@ -211,5 +237,31 @@ namespace WPFSerialAssistant
 
             return true;
         }
+
+        #region 定时器
+        /// <summary>
+        /// 超时时间为50ms
+        /// </summary>
+        private const int TIMEOUT = 50;
+        private void InitCheckTimer()
+        {
+            // 如果缓冲区中有数据，并且定时时间达到前依然没有得到处理，将会自动触发处理函数。
+            checkTimer.Interval = new TimeSpan(0, 0, 0, 0, TIMEOUT);
+            checkTimer.IsEnabled = false;
+            checkTimer.Tick += CheckTimer_Tick;
+        }
+
+        private void StartCheckTimer()
+        {
+            checkTimer.IsEnabled = true;
+            checkTimer.Start();
+        }
+
+        private void StopCheckTimer()
+        {
+            checkTimer.IsEnabled = false;
+            checkTimer.Stop();
+        }
+        #endregion
     }
 }

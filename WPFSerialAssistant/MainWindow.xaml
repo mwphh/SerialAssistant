@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialAssistant"
-        mc:Ignorable="d"
-        Title="串口助手(Version 1.0)" Height="600" Width="1024"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="串口助手(Version 1.2)" Height="600" Width="1024"
         MinHeight="550" MinWidth="1024"
         Icon="1.ico" Closing="Window_Closing" PreviewKeyDown="Window_KeyDown">
     <DockPanel Name="rootPanel">
@@ -17,6 +17,7 @@
                 <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)" Click="loadConfigMenuItem_Click" Visibility="Collapsed"></MenuItem>
                 <MenuItem Name="exitMenuItem" Header="退出" Click="exitMenuItem_Click"></MenuItem>
             </MenuItem>
+            
             <MenuItem Header="视图(_V)">
                 <MenuItem Name="serialSettingViewMenuItem" Header="串口配置面板" IsChecked="True" Click="serialSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="autoSendDataSettingViewMenuItem" Header="自动发送设置面板" IsChecked="True" Click="autoSendDataSettingViewMenuItem_Click"></MenuItem>
@@ -42,6 +43,7 @@
         </StatusBar>
         <Grid>
             <DockPanel>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid DockPanel.Dock="Left" Visibility="Visible">
                     <GroupBox Name="serialPortConfigPanel" Header="串口配置面板" Margin="5,5,0,5" BorderThickness="1" BorderBrush="#FF7199E0">
                         <DockPanel>
@@ -152,23 +154,29 @@
                         
                     </GroupBox>
                 </Grid>
+                </ScrollViewer>
+                
                 <Grid Name="serialCommunicationConfigPanel" DockPanel.Dock="Right" Margin="0,5,5,5" Visibility="Visible">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <GroupBox Header="通信设置面板" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="10*"></RowDefinition>
+                                <RowDefinition Height="12*"></RowDefinition>
                                 <RowDefinition Height="10*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <GroupBox Header="接收设置" Grid.Row="0" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                 <StackPanel>
                                     <GroupBox Header="显示方式" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
-                                            <RadioButton Name="recvCharacterRadioButton" Margin="0,5" IsChecked="True" Checked="recvCharacterRadioButton_Checked">字符</RadioButton>
-                                            <RadioButton Name="recvHexRadioButton" Margin="0,0,50,5" Checked="recvHexRadioButton_Checked">十六进制</RadioButton>
+                                            <RadioButton Name="recvCharacterRadioButton" Tag="char" Margin="0,5" IsChecked="True" Checked="recvModeButton_Checked">字符</RadioButton>
+                                            <RadioButton Name="recvHexRadioButton" Tag="hex" Margin="0,0,50,5" Checked="recvModeButton_Checked">十六进制</RadioButton>
+                                            <RadioButton Name="recvDecRadioButton" Tag="dec" Margin="0,0,50,5" Checked="recvModeButton_Checked">十进制</RadioButton>
+                                            <RadioButton Name="recvOctRadioButton" Tag="oct" Margin="0,0,50,5" Checked="recvModeButton_Checked">八进制</RadioButton>
+                                            <RadioButton Name="recvBinRadioButton" Tag="bin" Margin="0,0,50,5" Checked="recvModeButton_Checked">二进制</RadioButton>
                                         </StackPanel>
                                     </GroupBox>
                                     <StackPanel>
-                                        <CheckBox Name="showRecvDataCheckBox" Content="显示接收数据" IsChecked="True" Margin="10,5" Padding="0"/>
+                                        <CheckBox Name="showRecvDataCheckBox" Content="显示接收数据" Click="showRecvDataCheckBox_Click" IsChecked="True" Margin="10,5" Padding="0"/>
                                         <Button Name="saveRecvDataButton" Content="保存接收区数据" Margin="10,5" Padding="3" Click="saveRecvDataButton_Click" ToolTip="使用Ctrl+S也可以快捷保存哦！"/>
                                         <Button Name="clearRecvDataBoxButton" Content="清空接收区" Margin="10,5" Padding="3" Click="clearRecvDataBoxButton_Click"></Button>
                                     </StackPanel>
@@ -178,14 +186,15 @@
                                 <StackPanel>
                                     <GroupBox Header="发送方式" Margin="5,5,5,0"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
-                                            <RadioButton Name="sendCharacterRadioButton" Content="字符" IsChecked="True" Margin="0,5" Click="sendCharacterRadioButton_Click"></RadioButton>
-                                            <RadioButton Name="sendHexRadioButton" Content="十六进制" Margin="0,0,0,5" Click="sendHexRadioButton_Click"></RadioButton>
+                                            <RadioButton Name="sendCharacterRadioButton" Tag="char" Click="sendDataModeRadioButton_Click" Content="字符" IsChecked="True" Margin="0,5"></RadioButton>
+                                            <RadioButton Name="sendHexRadioButton" Tag="hex" Click="sendDataModeRadioButton_Click" Content="十六进制" Margin="0,0,0,5"></RadioButton>
                                         </StackPanel>
                                     </GroupBox>
+                                 
                                     <GroupBox Header="发送内容" Margin="5" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
                                             <RadioButton Name="manualInputRadioButton" Content="手动输入" Margin="0,5" IsChecked="True" Click="manualInputRadioButton_Click"></RadioButton>
-                                            <RadioButton Name="loadFileRadioButton" Content="加载文件" Margin="0,0,0,5" Click="loadFileRadioButton_Click"></RadioButton>
+                                            <RadioButton Name="loadFileRadioButton" IsEnabled="False" Content="加载文件" Margin="0,0,0,5" Click="loadFileRadioButton_Click"></RadioButton>
                                         </StackPanel>
                                     </GroupBox>
                                     <Button Name="clearSendDataTextBox" Content="清空发送区" Padding="3" Margin="10,5,10,0" Click="clearSendDataTextBox_Click"></Button>
@@ -193,8 +202,11 @@
                             </GroupBox>
                         </Grid>
                     </GroupBox>
+                    </ScrollViewer>
                 </Grid>
+
                 <Grid Name="autoSendConfigPanel" DockPanel.Dock="Bottom" Margin="5" Visibility="Visible">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <GroupBox Header="自动发送设置面板"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
@@ -209,11 +221,12 @@
                                     <ComboBoxItem>秒钟</ComboBoxItem>
                                     <ComboBoxItem>分钟</ComboBoxItem>
                                 </ComboBox>
-                                
+
                             </StackPanel>
                             <CheckBox Name="autoSendEnableCheckBox" Click="autoSendEnableCheckBox_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" ToolTip="使能后，必须要再次点击发送按钮才可以启动自动发送。">使能自动发送</CheckBox>
                         </Grid>
                     </GroupBox>
+                    </ScrollViewer>
                 </Grid>
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -222,17 +235,16 @@
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Row="0" Header="接收区" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                         <RichTextBox Name="recvDataRichTextBox" Margin="2,5" BorderThickness="0" IsReadOnly="True">
-                            <FlowDocument LineHeight="1.5"></FlowDocument>
+                            <FlowDocument LineHeight="1.5" FontSize="14" FontFamily="Lucida Console"></FlowDocument>
                         </RichTextBox>
                     </GroupBox>
-
                     <GroupBox Grid.Row="1" Header="发送区" IsEnabled="{Binding ElementName=portsComboBox, Path=IsEnabled}"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90*"></ColumnDefinition>
                                 <ColumnDefinition Width="80"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBox Name="sendDataTextBox" Grid.Column="0" VerticalAlignment="Center" Padding="5" Margin="5,0,0,0">Hello, world!</TextBox>
+                            <TextBox Name="sendDataTextBox" FontFamily="Lucida Console" Grid.Column="0" VerticalAlignment="Center" Padding="5" Margin="5,0,0,0">Hello, world!</TextBox>
                             <Button Name="sendDataButton" Click="sendDataButton_Click" VerticalAlignment="Center" Grid.Column="1" Padding="3" Content="发送" Margin="5,0"></Button>
                             <Grid></Grid>
                         </Grid>

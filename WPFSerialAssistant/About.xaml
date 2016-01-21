@@ -17,14 +17,14 @@
                 串口调试助手
             </TextBlock>
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
-                Serial Assistant Based on WPF
+                Serial Assistant
             </TextBlock>
         </StackPanel>
         <Grid Grid.Row="1">
             <StackPanel Grid.Column="0" Margin="10">
-                <TextBlock>版本编号：Verison 1.1</TextBlock>
-                <TextBlock>更新日期：2015年9月20日 星期日</TextBlock>
-                <TextBlock>软件作者：Christopher</TextBlock>
+                <TextBlock>版本编号：Verison 1.2</TextBlock>
+                <TextBlock>更新日期：2016年01月21日 星期四</TextBlock>
+                <TextBlock>软件作者：Christopher Lee</TextBlock>
                 <TextBlock>反馈邮箱：christopherlee1993@outlook.com</TextBlock>
                 <TextBlock>小小说明：开放源码，采用MIT协议。望共同学习进步。</TextBlock>
             </StackPanel>
