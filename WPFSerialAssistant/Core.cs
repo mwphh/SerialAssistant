@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -161,6 +161,10 @@ namespace WPFSerialAssistant
         // 7. 自动发送时间间隔
         // 8. 窗口状态：最大化|高度+宽度
         // 9. 面板显示状态
+        // 10. 接收数据模式
+        // 11. 是否显示接收数据
+        // 12. 发送数据模式
+        // 13. 发送追加内容
         //
 
         /// <summary>
@@ -204,6 +208,17 @@ namespace WPFSerialAssistant
             config.Add("serialPortConfigPanelVisible", serialPortConfigPanel.Visibility == Visibility.Visible);
             config.Add("autoSendConfigPanelVisible", autoSendConfigPanel.Visibility == Visibility.Visible);
             config.Add("serialCommunicationConfigPanelVisible", serialCommunicationConfigPanel.Visibility == Visibility.Visible);
+
+            // 保存接收模式
+            config.Add("receiveMode", receiveMode);
+            config.Add("showReceiveData", showReceiveData);
+
+            // 保存发送模式
+            config.Add("sendMode", sendMode);
+
+            // 保存发送追加
+            config.Add("appendContent", appendContent);
+
 
             // 保存配置信息到磁盘中
             Configuration.Save(config, @"Config\default.conf");
@@ -308,6 +323,68 @@ namespace WPFSerialAssistant
                 serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
             }
 
+            // 加载接收模式
+            receiveMode = (ReceiveMode)config.GetInt("receiveMode");
+
+            switch (receiveMode)
+            {
+                case ReceiveMode.Character:
+                    recvCharacterRadioButton.IsChecked = true;
+                    break;
+                case ReceiveMode.Hex:
+                    recvHexRadioButton.IsChecked = true;
+                    break;
+                case ReceiveMode.Decimal:
+                    recvDecRadioButton.IsChecked = true;
+                    break;
+                case ReceiveMode.Octal:
+                    recvOctRadioButton.IsChecked = true;
+                    break;
+                case ReceiveMode.Binary:
+                    recvBinRadioButton.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
+
+            showReceiveData = config.GetBool("showReceiveData");
+            showRecvDataCheckBox.IsChecked = showReceiveData;
+
+            // 加载发送模式
+            sendMode = (SendMode)config.GetInt("sendMode");
+
+            switch (sendMode)
+            {
+                case SendMode.Character:
+                    sendCharacterRadioButton.IsChecked = true;
+                    break;
+                case SendMode.Hex:
+                    sendHexRadioButton.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
+
+            //加载追加内容
+           appendContent = config.GetString("appendContent");
+
+            switch (appendContent)
+            {
+                case "":
+                    appendNoneRadioButton.IsChecked = true;
+                    break;
+                case "\r":
+                    appendReturnRadioButton.IsChecked = true;
+                    break;
+                case "\n":
+                    appednNewLineRadioButton.IsChecked = true;
+                    break;
+                case "\r\n":
+                    appendReturnNewLineRadioButton.IsChecked = true;
+                    break;
+                default:
+                    break;
+            }
             return true;
         }
         #endregion

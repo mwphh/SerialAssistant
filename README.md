@@ -1,107 +1,127 @@
-ï»¿# WPFSerialAssitan ä¸²å£åŠ©æ‰‹
+# WPFSerialAssitan ´®¿ÚÖúÊÖ
 ------------------
-## å¼•è¨€
-**ä¸€æ¬¾åŸºäºŽC#åŠWPFçš„ä¸²å£åŠ©æ‰‹è½¯ä»¶ã€‚æœ¬ä¸²å£åŠ©æ‰‹æ“ä½œæ–¹ä¾¿ï¼ŒUIç®€æ´ã€‚è½¯ä»¶å®žçŽ°äº†åŸºæœ¬çš„ä¸²å£é€šè®¯éœ€è¦çš„åŠŸèƒ½ï¼Œå¼€å‘è€…å¯ä»¥åŸºäºŽæ­¤æ·»åŠ è‡ªå®šä¹‰çš„åŠŸèƒ½ã€‚æ­¤å¤–ï¼Œå¯ä»¥åŸºäºŽæ­¤å¼€å‘å‡ºä¸€äº›ç®€å•çš„ä¸²å£æŽ§åˆ¶ç±»è½¯ä»¶ã€‚æœ¬äººç¼–å†™è¿‡ä¸å°‘åŸºäºŽä¸²å£é€šè®¯çš„è½¯ä»¶ï¼Œå¸Œæœ›è¿™ä¸ªå¯ä»¥å¯¹åˆå­¦è€…æœ‰æ‰€å¸®åŠ©ã€‚**
+## ÒýÑÔ
+**Ò»¿î»ùÓÚC#¼°WPFµÄ´®¿ÚÖúÊÖÈí¼þ¡£±¾´®¿ÚÖúÊÖ²Ù×÷·½±ã£¬UI¼ò½à¡£Èí¼þÊµÏÖÁË»ù±¾µÄ´®¿ÚÍ¨Ñ¶ÐèÒªµÄ¹¦ÄÜ£¬¿ª·¢Õß¿ÉÒÔ»ùÓÚ´ËÌí¼Ó×Ô¶¨ÒåµÄ¹¦ÄÜ¡£´ËÍâ£¬¿ÉÒÔ»ùÓÚ´Ë¿ª·¢³öÒ»Ð©¼òµ¥µÄ´®¿Ú¿ØÖÆÀàÈí¼þ¡£**
 
-## åŸºæœ¬åŠŸèƒ½
-* ä¸²å£æ•°æ®æŽ¥æ”¶ï¼Œå¯ä»¥é‡‡ç”¨å¤šç§æ¨¡å¼æ˜¾ç¤ºæŽ¥æ”¶åˆ°çš„æ•°æ®ï¼šå­—ç¬¦ï¼Œåå…­è¿›åˆ¶ç­‰
-* ä¸²å£æ•°æ®å‘é€ï¼Œå¯ä»¥æ‰‹åŠ¨/é—´éš”è‡ªåŠ¨å‘é€
-* ä¿å­˜ä¸²å£æŽ¥æ”¶åˆ°æ˜¾ç¤ºåŒºçš„æ•°æ®
-* ä¿å­˜/åŠ è½½è½¯ä»¶é…ç½®
-* ç‹¬åˆ›çš„â€œç®€æ´è§†å›¾æ¨¡å¼â€ï¼Œ ä¾¿äºŽç”¨æˆ·ä¸“æ³¨äºŽæ•°æ®çš„æŽ¥æ”¶å’Œå‘é€
+## ÏîÄ¿Ö÷Ò³
+* [»ùÓÚWPF¿ª·ÅÔ´ÂëµÄ´®¿Úµ÷ÊÔÖúÊÖ(https://github.com/ChrisLeeGit/SerialAssistant)](https://github.com/ChrisLeeGit/SerialAssistant)
+ 
 
-## ä½¿ç”¨å¸®åŠ©
-**è½¯ä»¶æ“ä½œæ¯”è¾ƒç®€å•ï¼Œä¸ä½œè¿‡å¤šçš„ä»‹ç»ã€‚**
+## »ù±¾¹¦ÄÜ
+* ´®¿ÚÊý¾Ý½ÓÊÕ£¬¿ÉÒÔ²ÉÓÃ¶àÖÖÄ£Ê½ÏÔÊ¾½ÓÊÕµ½µÄÊý¾Ý£º×Ö·û£¬Ê®Áù½øÖÆµÈ
+* ´®¿ÚÊý¾Ý·¢ËÍ£¬¿ÉÒÔÊÖ¶¯/¼ä¸ô×Ô¶¯·¢ËÍ
+* ±£´æ´®¿Ú½ÓÊÕµ½ÏÔÊ¾ÇøµÄÊý¾Ý
+* ±£´æ/¼ÓÔØÈí¼þÅäÖÃ
+* ¶À´´µÄ¡°¼ò½àÊÓÍ¼Ä£Ê½¡±£¬ ±ãÓÚÓÃ»§×¨×¢ÓÚÊý¾ÝµÄ½ÓÊÕºÍ·¢ËÍ
 
-
-## æµ‹è¯•å›¾ç‰‡
-### å¯åŠ¨åˆå§‹åŒ–æˆªå›¾
-![å¯åŠ¨åˆå§‹åŒ–æˆªå›¾](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/1.PNG)
-
-### æ‰“å¼€ç«¯å£å¹¶æŽ¥æ”¶æ•°æ®
-![æ‰“å¼€ç«¯å£å¹¶æŽ¥æ”¶æ•°æ®](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/2.PNG)
-
-### å¯è‡ªç”±éšè—çš„è®¾ç½®é¢æ¿
-![å¯è‡ªç”±éšè—çš„è®¾ç½®é¢æ¿1](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/3.PNG)
-![å¯è‡ªç”±éšè—çš„è®¾ç½®é¢æ¿2](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/4.PNG)
-
-### ç®€æ´æ— å¹²æ‰°çš„è§†å›¾
-![ç®€æ´æ— å¹²æ‰°çš„è§†å›¾](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/5.PNG)
-
-## ä½¿ç”¨åˆ°çš„å¼€æºåº“
-* æœ¬è½¯ä»¶ä½¿ç”¨çš„ä¸€ä¸ªå¼€æºçš„Json.Netåº“ï¼Œå¯ä»¥éžå¸¸æ–¹ä¾¿åœ°ä½¿ç”¨å®ƒç”¨Jsonæ ¼å¼å­˜å‚¨é…ç½®ä¿¡æ¯æˆ–è€…åŠ è½½Jsonæ ¼å¼çš„é…ç½®æ–‡ä»¶ã€‚å…¶ä¸»é¡µä¸ºï¼šhttp://www.newtonsoft.com/jsonã€‚
-
-## å¼€å‘
-è¿™ä¸ªæ˜¯ä¸€ä¸ªå®Œæ•´çš„Visual Studioå·¥ç¨‹ï¼Œç›´æŽ¥Cloneä¸‹æ¥å³å¯ã€‚
-
-## ç›¸å…³å¼€æºé¡¹ç›®
-æš‘å‡åŒæ—¶å®Œæˆäº†ä¸€ä¸ªåŸºäºŽArduinoçš„å¤ªé˜³èƒ½è‡ªåŠ¨ä¾›æ°´ç³»ç»Ÿã€‚å½“ç„¶ï¼Œè¿™ä¸ªç³»ç»Ÿå¹¶æ²¡æœ‰å®žé™…ä½¿ç”¨ä¸Šï¼Œä½†æ˜¯è®¾è®¡çš„åŠŸèƒ½åŸºæœ¬éƒ½å®žçŽ°äº†ã€‚è¿™ä¸ªé¡¹ç›®å±žäºŽæ¯”è¾ƒç»¼åˆçš„äº†ã€‚ä½¿ç”¨äº†ä¸²å£é€šä¿¡çš„æ–¹å¼ä¸ŽPCç«¯çš„æŽ§åˆ¶è½¯ä»¶è¿›è¡Œé€šä¿¡ã€‚è¯¥PCä¸²å£æŽ§åˆ¶è½¯ä»¶å¯ä»¥ç»™å•ç‰‡æœºå‘é€è‡ªå®šä¹‰çš„æŽ§åˆ¶æŒ‡ä»¤ï¼Œå¹¶è¢«æ‰§è¡Œã€‚æ‰€ä»¥ï¼Œä¾¿æ¶‰åŠåˆ°é€šä¿¡ç”¨çš„è‡ªå®šä¹‰çš„åè®®è®¾è®¡ï¼ŒArduinoæŒ‡ä»¤è§£æžç³»ç»Ÿçš„è®¾è®¡å’Œå®žçŽ°ã€‚å¦‚æžœæ„Ÿå…´è¶£çš„è¯ï¼Œä¹ŸåŒæ ·å¯ä»¥å…³æ³¨ï¼Œå…±åŒå­¦ä¹ è¿›æ­¥ï¼ï¼è°¢è°¢ï¼ä»¥ä¸‹æ˜¯é¡¹ç›®æ‰˜ç®¡åœ°å€ï¼š
-1. Githubåœ°å€ï¼šhttps://github.com/ChrisLeeGit/AutomaticWaterSupplySystem
-2. CSDN Codeåœ°å€ï¼šhttps://code.csdn.net/u011193957/automaticwatersupplysystem
-
-# æ›´æ–°æ—¥å¿—
-## 2016å¹´1æœˆ21æ—¥ å‘¨å›› Version 1.2
-### åŠŸèƒ½
-* æ–°å¢ž æŽ¥æ”¶åˆ°çš„ä¸²å£æ•°æ®å¯ä»¥é€‰æ‹©ä½¿ç”¨æŸç§æ–¹å¼æ˜¾ç¤ºï¼š`å­—ç¬¦ä¸²`ï¼Œ`äºŒè¿›åˆ¶`ï¼Œ`å…«è¿›åˆ¶`ï¼Œ`åè¿›åˆ¶`ï¼Œ`åå…­è¿›åˆ¶`ç­‰å½¢å¼
-* æ–°å¢ž ä¸²å£å‘é€å¯ä»¥é€‰æ‹©`å­—ç¬¦ä¸²`å’Œ`åå…­è¿›åˆ¶`ä¸¤ç§æ¨¡å¼
-* æ–°å¢ž ç»™éƒ¨åˆ†é¢æ¿æ·»åŠ äº†å¯æ»šåŠ¨çš„å¸ƒå±€ï¼Œå¯ä»¥è‡ªé€‚åº”çª—å£å°ºå¯¸ï¼Œå¢žåŠ äº†çª—å£å˜åŒ–çš„çµæ´»æ€§
-* æ–°å¢ž ä¸²å£æ•°æ®å¤„ç†æ—¶ï¼Œé‡‡ç”¨äº†ä¸€ä¸ªç¼“å†²åŒºæ¥æš‚å­˜æŽ¥æ”¶åˆ°çš„æ•°æ®ï¼Œå½“åˆ°è¾¾ä¸€å®šé˜ˆå€¼åŽï¼Œä¼šå¯åŠ¨æ•°æ®å¤„ç†çš„çº¿ç¨‹åœ¨åŽå°å¤„ç†å’Œåˆ†æžæ•°æ®ï¼Œè€Œä¸ä¼šé˜»å¡žæŽ¥æ”¶çº¿ç¨‹ï¼Œæé«˜äº†ç¨‹åºçš„ç¨³å®šæ€§å’Œå¯é æ€§
-
-### Bugä¿®å¤
-* ä¿®å¤ æŸäº›æƒ…å†µä¸‹å› ä¸ºæŽ¥æ”¶æ•°æ®ç¼“å†²åŒºæ•°æ®æ²¡æœ‰åˆ°è¾¾æŒ‡å®šé˜ˆå€¼è€Œè¿Ÿè¿Ÿå¾—ä¸åˆ°å¤„ç†çš„é—®é¢˜
-* ä¿®å¤ éƒ¨åˆ†ç•Œé¢æ˜¾ç¤ºé—®é¢˜
-* ä¿®å¤ ä¸²å£æ•°æ®æŽ¥æ”¶ç¨³å®šæ€§é—®é¢˜
-
-## å…¶ä»–
-* å¦‚ä½•å‘é€å¸¦æœ‰ç‰¹æ®Šè½¬ä¹‰å­—ç¬¦çš„æ–‡æœ¬æ•°æ®ï¼Ÿ
- * é¦–é€‰é€‰æ‹©å‘é€æ–¹å¼ä¸º`å­—ç¬¦`æ¨¡å¼ï¼Œç„¶åŽåœ¨å‘é€æ¡†ä¸­è¾“å…¥è¦å‘é€çš„æ–‡æœ¬`Hello world!`
- * ç„¶åŽé€‰æ‹©å‘é€æ–¹å¼ä¸º`åå…­è¿›åˆ¶`æ¨¡å¼ï¼Œç„¶åŽå†æ–‡æœ¬è¾“å…¥æ¡†ä¸­è¿½åŠ è¦å‘é€çš„è½¬ä¹‰å­—ç¬¦ASCIIç ï¼Œå¦‚æ¢è¡Œç¬¦`0A`
- * æŽ¥ä¸‹æ¥å†æ¬¡åˆ‡æ¢åˆ°`å­—ç¬¦`æ¨¡å¼ï¼Œæ­¤æ—¶å†è¿›è¡Œå‘é€æ—¶ä¾¿ä¼šå°†æ¢è¡Œç¬¦å·ä¸€å¹¶å‘é€äº†ã€‚
-
-* æµ‹è¯•å‘çŽ°ï¼Œå³ä½¿å‘é€é—´éš”ä¸º1msï¼Œç”±äºŽé‡‡ç”¨äº†å¤šçº¿ç¨‹æ¨¡å¼ï¼Œè½¯ä»¶æ•´ä½“è¿è¡Œæ­£å¸¸ï¼Œæ•°æ®æ˜¾ç¤ºæ­£å¸¸ï¼Œæ²¡æœ‰å¡é¡¿çš„çŽ°è±¡
+## Ê¹ÓÃ°ïÖú
+**Èí¼þ²Ù×÷±È½Ï¼òµ¥£¬²»×÷¹ý¶àµÄ½éÉÜ¡£**
 
 
-## 2015å¹´9æœˆ20æ—¥ å‘¨æ—¥ Version 1.1
-### åŠŸèƒ½
-* æ–°å¢ž è½¯ä»¶å¯åŠ¨åŽè‡ªåŠ¨æŸ¥æ‰¾å¯ç”¨ç«¯å£å·åŠŸèƒ½
-* æ–°å¢ž ä¿å­˜æŽ¥å—åŒºæ•°æ®åˆ°æŒ‡å®šå­˜å‚¨è·¯å¾„åŠŸèƒ½
-* æ–°å¢ž è½¯ä»¶é€€å‡ºå‰è‡ªåŠ¨å…³é—­å·²å¼€å¯çš„ç«¯å£å·ï¼›è¯¢é—®æ˜¯å¦ä¿å­˜è½¯ä»¶çš„é…ç½®åŠŸèƒ½
-* æ–°å¢ž å¿«æ·ä¿å­˜æ•°æ®åŠŸèƒ½(å·¦Ctrl+S)
-* æ–°å¢ž å¿«æ·è¿›å…¥/é€€å‡ºâ€œç®€æ´è§†å›¾æ¨¡å¼â€åŠŸèƒ½ï¼ˆå·¦Ctrl+Enter)
-* æ–°å¢ž æ¢å¤é€šè¿‡èœå•é¡¹è¿›å…¥æˆ–è€…é€€å‡ºâ€œç®€æ´è§†å›¾æ¨¡å¼â€åŠŸèƒ½
+## ²âÊÔÍ¼Æ¬
+### Æô¶¯³õÊ¼»¯½ØÍ¼
+![Æô¶¯³õÊ¼»¯½ØÍ¼](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/1.PNG)
 
-### Bugä¿®å¤
-* ä¿®å¤ è½¯ä»¶å¯åŠ¨åŽæ²¡æœ‰æ¢å¤åˆ°é…ç½®ä¿å­˜çš„ä¸Šæ¬¡å…³é—­çš„ä½ç½®
-* ä¿®å¤ é€€å‡ºèœå•é¡¹æ— æ•ˆçš„é—®é¢˜
-* ä¿®å¤ æŸç§ç‰¹åˆ«æƒ…å†µä¸‹ï¼Œä»Žç®€æ´è§†å›¾æ¨¡å¼æ¢å¤æ—¶å‡ºçŽ°å´©æºƒçš„çŽ°è±¡
+### ´ò¿ª¶Ë¿Ú²¢½ÓÊÕÊý¾Ý
+![´ò¿ª¶Ë¿Ú²¢½ÓÊÕÊý¾Ý](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/2.PNG)
 
-### å…¶ä»–
-* ç§»é™¤èœå•é¡¹â€œä¿å­˜ï¼ˆSï¼‰â€ï¼Œè¯¥èœå•é¡¹åŠŸèƒ½ä¸Žé¢æ¿ä¸­ä¿å­˜æ•°æ®æŒ‰é’®åŠŸèƒ½é‡å¤
-* æ·»åŠ â€œå…³äºŽâ€çª—ä½“
-* ç‰ˆæœ¬å·å‡çº§åˆ°Version 1.1
+### ¿É×ÔÓÉÒþ²ØµÄÉèÖÃÃæ°å
+![¿É×ÔÓÉÒþ²ØµÄÉèÖÃÃæ°å1](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/3.PNG)
+![¿É×ÔÓÉÒþ²ØµÄÉèÖÃÃæ°å2](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/4.PNG)
+
+### ¼ò½àÎÞ¸ÉÈÅµÄÊÓÍ¼
+![¼ò½àÎÞ¸ÉÈÅµÄÊÓÍ¼](https://raw.githubusercontent.com/ChrisLeeGit/SerialAssistant/master/DebugPics/5.PNG)
+
+## Ê¹ÓÃµ½µÄ¿ªÔ´¿â
+* ±¾Èí¼þÊ¹ÓÃµÄÒ»¸ö¿ªÔ´µÄJson.Net¿â£¬¿ÉÒÔ·Ç³£·½±ãµØÊ¹ÓÃËüÓÃJson¸ñÊ½´æ´¢ÅäÖÃÐÅÏ¢»òÕß¼ÓÔØJson¸ñÊ½µÄÅäÖÃÎÄ¼þ¡£ÆäÖ÷Ò³Îª£ºhttp://www.newtonsoft.com/json¡£
+
+## ×ÔÓÉ¿ª·¢
+Õâ¸öÊÇÒ»¸öÍêÕûµÄVisual Studio 2015¹¤³Ì£¬Ö±½ÓCloneÏÂÀ´¼´¿É¡£
+
+## Ïà¹Ø¿ªÔ´ÏîÄ¿
+Êî¼ÙÍ¬Ê±Íê³ÉÁËÒ»¸ö»ùÓÚArduinoµÄÌ«ÑôÄÜ×Ô¶¯¹©Ë®ÏµÍ³¡£µ±È»£¬Õâ¸öÏµÍ³²¢Ã»ÓÐÊµ¼ÊÊ¹ÓÃÉÏ£¬µ«ÊÇÉè¼ÆµÄ¹¦ÄÜ»ù±¾¶¼ÊµÏÖÁË¡£Õâ¸öÏîÄ¿ÊôÓÚ±È½Ï×ÛºÏµÄÁË¡£Ê¹ÓÃÁË´®¿ÚÍ¨ÐÅµÄ·½Ê½ÓëPC¶ËµÄ¿ØÖÆÈí¼þ½øÐÐÍ¨ÐÅ¡£¸ÃPC´®¿Ú¿ØÖÆÈí¼þ¿ÉÒÔ¸øµ¥Æ¬»ú·¢ËÍ×Ô¶¨ÒåµÄ¿ØÖÆÖ¸Áî£¬²¢±»Ö´ÐÐ¡£ËùÒÔ£¬±ãÉæ¼°µ½Í¨ÐÅÓÃµÄ×Ô¶¨ÒåµÄÐ­ÒéÉè¼Æ£¬ArduinoÖ¸Áî½âÎöÏµÍ³µÄÉè¼ÆºÍÊµÏÖ¡£Èç¹û¸ÐÐËÈ¤µÄ»°£¬Ò²Í¬Ñù¿ÉÒÔ¹Ø×¢£¬¹²Í¬Ñ§Ï°½ø²½£¡£¡Ð»Ð»£¡ÒÔÏÂÊÇÏîÄ¿ÍÐ¹ÜµØÖ·£º
+
+1. GithubµØÖ·£ºhttps://github.com/ChrisLeeGit/AutomaticWaterSupplySystem
+2. CSDN CodeµØÖ·£ºhttps://code.csdn.net/u011193957/automaticwatersupplysystem
+
+# ¸üÐÂÈÕÖ¾
+## 2016Äê1ÔÂ24ÈÕ ÖÜÈÕ Version 1.3
+### ¹¦ÄÜ
+* ÐÂÔö Ö§³Ö¶àÖÖ±àÂë·½Ê½£¬ÖÐÎÄÊÕ·¢²âÊÔÕý³£
+* ÐÂÔö Ö§³Ö·¢ËÍ×·¼ÓÌØÊâÄÚÈÝ£¬Èç»»ÐÐ(\n)µÈ£¬²Î¼û¡°ÉèÖÃ->·¢ËÍ×·¼Ó¡±²Ëµ¥Ïî
+* ÐÂÔö Èí¼þÅäÖÃÐÅÏ¢ÐÂÔöÅäÖÃÏîµÄ±£´æºÍ¸´Ô­
+* ÐÂÔö ×´Ì¬À¸ÐÂÔöÊý¾Ý½ÓÊÕ×´Ì¬Ö¸Ê¾
+
+### BugÐÞ¸´
+* ÐÞ¸´ ×´Ì¬À¸ÏÔÊ¾ÎÊÌâ£º×Ô¶¯·¢ËÍÊ±×´Ì¬À¸²»ÄÜÕý³£ÌáÊ¾
+* ÐÞ¸´ ¹¤¾ß°üº¯Êý¿âÓÐÊ±³öÏÖ×Ö·û´®×ª»»Òì³£µÄÎÊÌâ
+
+### ÆäËû
+* ÎÞÐèÔÙÏñÉÏÒ»¸ö°æ±¾ÄÇÑù£¬·¢ËÍ»»ÐÐ·ûÊ±ÐèÒªÊÖ¶¯Ìí¼ÓASCIIÂë£¬¼ò»¯ÁË²Ù×÷
+* ³ÌÐòµÄÎÈ¶¨ÐÔ½øÒ»²½ÌáÉý
+
+## 2016Äê1ÔÂ21ÈÕ ÖÜËÄ Version 1.2
+### ¹¦ÄÜ
+* ÐÂÔö ½ÓÊÕµ½µÄ´®¿ÚÊý¾Ý¿ÉÒÔÑ¡ÔñÊ¹ÓÃÄ³ÖÖ·½Ê½ÏÔÊ¾£º`×Ö·û´®`£¬`¶þ½øÖÆ`£¬`°Ë½øÖÆ`£¬`Ê®½øÖÆ`£¬`Ê®Áù½øÖÆ`µÈÐÎÊ½
+* ÐÂÔö ´®¿Ú·¢ËÍ¿ÉÒÔÑ¡Ôñ`×Ö·û´®`ºÍ`Ê®Áù½øÖÆ`Á½ÖÖÄ£Ê½
+* ÐÂÔö ¸ø²¿·ÖÃæ°åÌí¼ÓÁË¿É¹ö¶¯µÄ²¼¾Ö£¬¿ÉÒÔ×ÔÊÊÓ¦´°¿Ú³ß´ç£¬Ôö¼ÓÁË´°¿Ú±ä»¯µÄÁé»îÐÔ
+* ÐÂÔö ´®¿ÚÊý¾Ý´¦ÀíÊ±£¬²ÉÓÃÁËÒ»¸ö»º³åÇøÀ´ÔÝ´æ½ÓÊÕµ½µÄÊý¾Ý£¬µ±µ½´ïÒ»¶¨ãÐÖµºó£¬»áÆô¶¯Êý¾Ý´¦ÀíµÄÏß³ÌÔÚºóÌ¨´¦ÀíºÍ·ÖÎöÊý¾Ý£¬¶ø²»»á×èÈû½ÓÊÕÏß³Ì£¬Ìá¸ßÁË³ÌÐòµÄÎÈ¶¨ÐÔºÍ¿É¿¿ÐÔ
+
+### BugÐÞ¸´
+* ÐÞ¸´ Ä³Ð©Çé¿öÏÂÒòÎª½ÓÊÕÊý¾Ý»º³åÇøÊý¾ÝÃ»ÓÐµ½´ïÖ¸¶¨ãÐÖµ¶ø³Ù³ÙµÃ²»µ½´¦ÀíµÄÎÊÌâ
+* ÐÞ¸´ ²¿·Ö½çÃæÏÔÊ¾ÎÊÌâ
+* ÐÞ¸´ ´®¿ÚÊý¾Ý½ÓÊÕÎÈ¶¨ÐÔÎÊÌâ
+
+## ÆäËû
+* ÈçºÎ·¢ËÍ´øÓÐÌØÊâ×ªÒå×Ö·ûµÄÎÄ±¾Êý¾Ý£¿
+ * Ê×Ñ¡Ñ¡Ôñ·¢ËÍ·½Ê½Îª`×Ö·û`Ä£Ê½£¬È»ºóÔÚ·¢ËÍ¿òÖÐÊäÈëÒª·¢ËÍµÄÎÄ±¾`Hello world!`
+ * È»ºóÑ¡Ôñ·¢ËÍ·½Ê½Îª`Ê®Áù½øÖÆ`Ä£Ê½£¬È»ºóÔÙÎÄ±¾ÊäÈë¿òÖÐ×·¼ÓÒª·¢ËÍµÄ×ªÒå×Ö·ûASCIIÂë£¬Èç»»ÐÐ·û`0A`
+ * ½ÓÏÂÀ´ÔÙ´ÎÇÐ»»µ½`×Ö·û`Ä£Ê½£¬´ËÊ±ÔÙ½øÐÐ·¢ËÍÊ±±ã»á½«»»ÐÐ·ûºÅÒ»²¢·¢ËÍÁË¡£
+
+* ²âÊÔ·¢ÏÖ£¬¼´Ê¹·¢ËÍ¼ä¸ôÎª1ms£¬ÓÉÓÚ²ÉÓÃÁË¶àÏß³ÌÄ£Ê½£¬Èí¼þÕûÌåÔËÐÐÕý³££¬Êý¾ÝÏÔÊ¾Õý³££¬Ã»ÓÐ¿¨¶ÙµÄÏÖÏó
 
 
-## 2015å¹´9æœˆ15æ—¥ å‘¨äºŒ Version 1.0
-### åŠŸèƒ½
-* æ–°å¢ž é…ç½®ä¿¡æ¯ä¿å­˜åŠŸèƒ½ï¼Œç›®å‰ä¿å­˜çš„é…ç½®ä¿¡æ¯æœ‰ï¼š
- * æ³¢ç‰¹çŽ‡
- * å¥‡å¶æ ¡éªŒä½
- * æ•°æ®ä½
- * åœæ­¢ä½
- * å­—èŠ‚ç¼–ç 
- * å‘é€åŒºæ–‡æœ¬å†…å®¹
- * è‡ªåŠ¨å‘é€æ—¶é—´é—´éš”
- * çª—å£çŠ¶æ€ï¼šæœ€å¤§åŒ–|é«˜åº¦+å®½åº¦
- * é¢æ¿æ˜¾ç¤ºçŠ¶æ€
+## 2015Äê9ÔÂ20ÈÕ ÖÜÈÕ Version 1.1
+### ¹¦ÄÜ
+* ÐÂÔö Èí¼þÆô¶¯ºó×Ô¶¯²éÕÒ¿ÉÓÃ¶Ë¿ÚºÅ¹¦ÄÜ
+* ÐÂÔö ±£´æ½ÓÊÜÇøÊý¾Ýµ½Ö¸¶¨´æ´¢Â·¾¶¹¦ÄÜ
+* ÐÂÔö Èí¼þÍË³öÇ°×Ô¶¯¹Ø±ÕÒÑ¿ªÆôµÄ¶Ë¿ÚºÅ£»Ñ¯ÎÊÊÇ·ñ±£´æÈí¼þµÄÅäÖÃ¹¦ÄÜ
+* ÐÂÔö ¿ì½Ý±£´æÊý¾Ý¹¦ÄÜ(×óCtrl+S)
+* ÐÂÔö ¿ì½Ý½øÈë/ÍË³ö¡°¼ò½àÊÓÍ¼Ä£Ê½¡±¹¦ÄÜ£¨×óCtrl+Enter)
+* ÐÂÔö »Ö¸´Í¨¹ý²Ëµ¥Ïî½øÈë»òÕßÍË³ö¡°¼ò½àÊÓÍ¼Ä£Ê½¡±¹¦ÄÜ
 
-* æ–°å¢ž è½¯ä»¶å¯åŠ¨åŽè‡ªåŠ¨åŠ è½½é…ç½®ä¿¡æ¯åŠŸèƒ½
+### BugÐÞ¸´
+* ÐÞ¸´ Èí¼þÆô¶¯ºóÃ»ÓÐ»Ö¸´µ½ÅäÖÃ±£´æµÄÉÏ´Î¹Ø±ÕµÄÎ»ÖÃ
+* ÐÞ¸´ ÍË³ö²Ëµ¥ÏîÎÞÐ§µÄÎÊÌâ
+* ÐÞ¸´ Ä³ÖÖÌØ±ðÇé¿öÏÂ£¬´Ó¼ò½àÊÓÍ¼Ä£Ê½»Ö¸´Ê±³öÏÖ±ÀÀ£µÄÏÖÏó
 
-### Bugä¿®å¤
-* åŠ è½½é¢æ¿æ˜¾ç¤ºé…ç½®ä¿¡æ¯åŽï¼Œé¢æ¿çŠ¶æ€ä¸Žå¯¹åº”èœå•é¡¹æ˜¾ç¤ºä¸ä¸€è‡´çš„é—®é¢˜ 
+### ÆäËû
+* ÒÆ³ý²Ëµ¥Ïî¡°±£´æ£¨S£©¡±£¬¸Ã²Ëµ¥Ïî¹¦ÄÜÓëÃæ°åÖÐ±£´æÊý¾Ý°´Å¥¹¦ÄÜÖØ¸´
+* Ìí¼Ó¡°¹ØÓÚ¡±´°Ìå
+* °æ±¾ºÅÉý¼¶µ½Version 1.1
 
-### å…¶ä»–
-* ç§»é™¤èœå•â€œåŠ è½½é…ç½®(L)â€ï¼Œæ”¹ä¸ºè½¯ä»¶å¯åŠ¨åŽè‡ªåŠ¨æŸ¥æ‰¾é…ç½®å¹¶åŠ è½½
-* ç§»é™¤èœå•â€œç®€æ´æ¨¡å¼â€ï¼Œå½“æ‰‹åŠ¨å°†ä¸‰ä¸ªé¢æ¿å…¨éƒ¨éšè—åŽè‡ªåŠ¨è¿›å…¥â€œç®€æ´æ¨¡å¼â€ï¼Œæš‚æ—¶åŽ»é™¤ä¸€é”®è¿›å…¥â€œç®€æ´æ¨¡å¼â€åŠŸèƒ½èœå•
+
+## 2015Äê9ÔÂ15ÈÕ ÖÜ¶þ Version 1.0
+### ¹¦ÄÜ
+* ÐÂÔö ÅäÖÃÐÅÏ¢±£´æ¹¦ÄÜ£¬Ä¿Ç°±£´æµÄÅäÖÃÐÅÏ¢ÓÐ£º
+ * ²¨ÌØÂÊ
+ * ÆæÅ¼Ð£ÑéÎ»
+ * Êý¾ÝÎ»
+ * Í£Ö¹Î»
+ * ×Ö½Ú±àÂë
+ * ·¢ËÍÇøÎÄ±¾ÄÚÈÝ
+ * ×Ô¶¯·¢ËÍÊ±¼ä¼ä¸ô
+ * ´°¿Ú×´Ì¬£º×î´ó»¯|¸ß¶È+¿í¶È
+ * Ãæ°åÏÔÊ¾×´Ì¬
+
+* ÐÂÔö Èí¼þÆô¶¯ºó×Ô¶¯¼ÓÔØÅäÖÃÐÅÏ¢¹¦ÄÜ
+
+### BugÐÞ¸´
+* ¼ÓÔØÃæ°åÏÔÊ¾ÅäÖÃÐÅÏ¢ºó£¬Ãæ°å×´Ì¬Óë¶ÔÓ¦²Ëµ¥ÏîÏÔÊ¾²»Ò»ÖÂµÄÎÊÌâ 
+
+### ÆäËû
+* ÒÆ³ý²Ëµ¥¡°¼ÓÔØÅäÖÃ(L)¡±£¬¸ÄÎªÈí¼þÆô¶¯ºó×Ô¶¯²éÕÒÅäÖÃ²¢¼ÓÔØ
+* ÒÆ³ý²Ëµ¥¡°¼ò½àÄ£Ê½¡±£¬µ±ÊÖ¶¯½«Èý¸öÃæ°åÈ«²¿Òþ²Øºó×Ô¶¯½øÈë¡°¼ò½àÄ£Ê½¡±£¬ÔÝÊ±È¥³ýÒ»¼ü½øÈë¡°¼ò½àÄ£Ê½¡±¹¦ÄÜ²Ëµ¥
 
 
 

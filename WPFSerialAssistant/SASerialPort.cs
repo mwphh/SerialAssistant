@@ -4,7 +4,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -55,6 +55,7 @@ namespace WPFSerialAssistant
             {
                 serialPort.Open();
                 serialPort.DiscardInBuffer();
+                serialPort.DiscardOutBuffer();
                 Information(string.Format("成功打开端口{0}, 波特率{1}。", serialPort.PortName, serialPort.BaudRate.ToString()));
                 flag = true;
             }
@@ -190,6 +191,7 @@ namespace WPFSerialAssistant
             return false;
         }
 
+        private string appendContent = "\n";
         private bool SerialPortWrite(string textData, bool reportEnable)
         {
             if (serialPort == null)
@@ -205,9 +207,12 @@ namespace WPFSerialAssistant
 
             try
             {
+                //serialPort.DiscardOutBuffer();
+                //serialPort.DiscardInBuffer();
+
                 if (sendMode == SendMode.Character)
                 {
-                    serialPort.Write(textData);
+                    serialPort.Write(textData + appendContent);
                 }
                 else if (sendMode == SendMode.Hex)
                 {

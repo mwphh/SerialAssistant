@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFSerialAssistant"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="串口助手(Version 1.2)" Height="600" Width="1024"
+        Title="串口助手(Version 1.3)" Height="600" Width="1024"
         MinHeight="550" MinWidth="1024"
         Icon="1.ico" Closing="Window_Closing" PreviewKeyDown="Window_KeyDown">
     <DockPanel Name="rootPanel">
@@ -16,6 +16,15 @@
                 <MenuItem Name="saveConfigMenuItem" Header="保存配置" Click="saveConfigMenuItem_Click"></MenuItem>
                 <MenuItem Name="loadConfigMenuItem" Header="加载配置(_L)" Click="loadConfigMenuItem_Click" Visibility="Collapsed"></MenuItem>
                 <MenuItem Name="exitMenuItem" Header="退出" Click="exitMenuItem_Click"></MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="设置(_S)">
+                <MenuItem Header="发送追加">
+                    <RadioButton Name="appendNoneRadioButton" Tag="none" Content="无" Click="appendRadioButton_Click"></RadioButton>
+                    <RadioButton Name="appendReturnRadioButton" Tag="return" Content="回车(\r)" Click="appendRadioButton_Click"></RadioButton>
+                    <RadioButton Name="appednNewLineRadioButton" Tag="newline" Content="新行(\n)" IsChecked="True" Click="appendRadioButton_Click"></RadioButton>
+                    <RadioButton Name="appendReturnNewLineRadioButton" Tag="retnewline" Content="回车新行(\r\n)" Click="appendRadioButton_Click"></RadioButton>
+                </MenuItem>
             </MenuItem>
             
             <MenuItem Header="视图(_V)">
@@ -36,6 +45,16 @@
             </StatusBarItem>
             <StatusBarItem>
                 <ProgressBar Name="progressBar" Foreground="White" BorderBrush="White" Background="{Binding ElementName=statusBar, Path=Background}" Visibility="Collapsed" Width="150" Height="10" Value="10" SmallChange="1" IsIndeterminate="True" Margin="10,0,0,0"></ProgressBar>
+            </StatusBarItem>
+            <StatusBarItem Margin="0,0,0,0" Name="dataRecvStatusBarItem" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="5" Width="5" Fill="White" Margin="0,0,5,0"></Ellipse>
+                    <Ellipse Height="5" Width="5" Fill="White" Margin="0,0,5,0"></Ellipse>
+                    <Ellipse Height="5" Width="5" Fill="White" Margin="0,0,5,0"></Ellipse>
+                    <Ellipse Height="5" Width="5" Fill="White" Margin="0,0,5,0"></Ellipse>
+                    <Ellipse Height="5" Width="5" Fill="White" Margin="0,0,5,0"></Ellipse>
+                    <Ellipse Height="5" Width="5" Fill="White"></Ellipse>
+                </StackPanel>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Name="timeDateTextBlock" Foreground="White"></TextBlock>
@@ -123,7 +142,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="字节编码"  VerticalAlignment="Center" Grid.Column="0"></TextBlock>
                                 <ComboBox Name="encodingComboBox" Width="120" Grid.Column="1" Padding="5">
-                                    <ComboBoxItem IsSelected="True">Default(ANSI)</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">Default</ComboBoxItem>
                                     <ComboBoxItem>ASCII</ComboBoxItem>
                                     <ComboBoxItem>Unicode</ComboBoxItem>
                                     <ComboBoxItem>UTF-8</ComboBoxItem>
@@ -168,7 +187,7 @@
                                 <StackPanel>
                                     <GroupBox Header="显示方式" Margin="5"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
-                                            <RadioButton Name="recvCharacterRadioButton" Tag="char" Margin="0,5" IsChecked="True" Checked="recvModeButton_Checked">字符</RadioButton>
+                                            <RadioButton Name="recvCharacterRadioButton" Tag="char" Margin="0,5" IsChecked="True" Checked="recvModeButton_Checked">字符串</RadioButton>
                                             <RadioButton Name="recvHexRadioButton" Tag="hex" Margin="0,0,50,5" Checked="recvModeButton_Checked">十六进制</RadioButton>
                                             <RadioButton Name="recvDecRadioButton" Tag="dec" Margin="0,0,50,5" Checked="recvModeButton_Checked">十进制</RadioButton>
                                             <RadioButton Name="recvOctRadioButton" Tag="oct" Margin="0,0,50,5" Checked="recvModeButton_Checked">八进制</RadioButton>
@@ -186,7 +205,7 @@
                                 <StackPanel>
                                     <GroupBox Header="发送方式" Margin="5,5,5,0"  BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
                                         <StackPanel>
-                                            <RadioButton Name="sendCharacterRadioButton" Tag="char" Click="sendDataModeRadioButton_Click" Content="字符" IsChecked="True" Margin="0,5"></RadioButton>
+                                            <RadioButton Name="sendCharacterRadioButton" Tag="char" Click="sendDataModeRadioButton_Click" Content="字符串" IsChecked="True" Margin="0,5"></RadioButton>
                                             <RadioButton Name="sendHexRadioButton" Tag="hex" Click="sendDataModeRadioButton_Click" Content="十六进制" Margin="0,0,0,5"></RadioButton>
                                         </StackPanel>
                                     </GroupBox>

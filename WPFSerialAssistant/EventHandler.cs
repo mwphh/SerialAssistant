@@ -269,13 +269,13 @@ namespace WPFSerialAssistant
                         sendMode = SendMode.Character;
                         Information("提示：发送字符文本。");
                         // 将文本框中内容转换成char
-                        sendDataTextBox.Text = Utilities.ToSpecifiedText(sendDataTextBox.Text, SendMode.Character);
+                        sendDataTextBox.Text = Utilities.ToSpecifiedText(sendDataTextBox.Text, SendMode.Character, serialPort.Encoding);
                         break;
                     case "hex":
                         // 将文本框中的内容转换成hex
                         sendMode = SendMode.Hex;
                         Information("提示：发送十六进制。输入十六进制数据之间用空格隔开，如：1D 2A 38。");
-                        sendDataTextBox.Text = Utilities.ToSpecifiedText(sendDataTextBox.Text, SendMode.Hex);
+                        sendDataTextBox.Text = Utilities.ToSpecifiedText(sendDataTextBox.Text, SendMode.Hex, serialPort.Encoding);
                         break;
                     default:
                         break;
@@ -296,6 +296,32 @@ namespace WPFSerialAssistant
         private void clearSendDataTextBox_Click(object sender, RoutedEventArgs e)
         {
             sendDataTextBox.Clear();
+        }
+
+        private void appendRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null)
+            {
+                switch (rb.Tag.ToString())
+                {
+                    case "none":
+                        appendContent = "";
+                        break;
+                    case "return":
+                        appendContent = "\r";
+                        break;
+                    case "newline":
+                        appendContent = "\n";
+                        break;
+                    case "retnewline":
+                        appendContent = "\r\n";
+                        break;
+                    default:
+                        break;
+                }
+                Information("发送追加：" + rb.Content.ToString());
+            }
         }
         #endregion
 
@@ -433,9 +459,12 @@ namespace WPFSerialAssistant
                 StartCheckTimer();
 
                 this.Dispatcher.Invoke(new Action(() =>
-                {
-                    Information("接收数据......");
-                    progressBar.Visibility = Visibility.Visible;
+                {   
+                    if (autoSendEnableCheckBox.IsChecked == false)
+                    {
+                        Information("");
+                    }                                 
+                    dataRecvStatusBarItem.Visibility = Visibility.Visible;
                 }));
             }
         }
@@ -478,12 +507,11 @@ namespace WPFSerialAssistant
                 if (showReceiveData)
                 {
                     // 根据显示模式显示接收到的字节.
-                    recvDataRichTextBox.AppendText(Utilities.BytesToText(recvBuffer, receiveMode));
+                    recvDataRichTextBox.AppendText(Utilities.BytesToText(recvBuffer, receiveMode, serialPort.Encoding));
                     recvDataRichTextBox.ScrollToEnd();
                 }
 
-                Information("");
-                progressBar.Visibility = Visibility.Hidden;
+                dataRecvStatusBarItem.Visibility = Visibility.Collapsed;
             }));
 
             // TO-DO：

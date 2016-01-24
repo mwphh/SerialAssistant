@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 
 namespace WPFSerialAssistant
 {
     public static class Utilities
     {
-        public static string BytesToText(List<byte> bytesBuffer, ReceiveMode mode)
+        public static string BytesToText(List<byte> bytesBuffer, ReceiveMode mode, Encoding encoding)
         {
             string result = "";
+
+            if (mode == ReceiveMode.Character)
+            {
+                return encoding.GetString(bytesBuffer.ToArray<byte>());
+            }
 
             foreach (var item in bytesBuffer)
             {
                 switch (mode)
                 {
-                    case ReceiveMode.Character:
-                        result += (char)item;
-                        break;
                     case ReceiveMode.Hex:
                         result += Convert.ToString(item, 16).ToUpper() + " ";
                         break;
@@ -39,7 +41,7 @@ namespace WPFSerialAssistant
             return result;
         }
 
-        public static string ToSpecifiedText(string text, SendMode mode)
+        public static string ToSpecifiedText(string text, SendMode mode, Encoding encoding)
         {
             string result = "";
             switch (mode)
@@ -47,24 +49,25 @@ namespace WPFSerialAssistant
                 case SendMode.Character:
                     text = text.Trim();
 
-                    if (text == "")
+                    // 转换成字节
+                    List<byte> src = new List<byte>();
+
+                    string[] grp = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var item in grp)
                     {
-                        return "";
+                        src.Add(Convert.ToByte(item, 16));
                     }
 
-                    try
-                    {
-                        string[] grp = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var item in grp)
-                        {
-                            result += (char)Convert.ToInt32(item, 16);
-                        }
-                    }
-                    catch { }
-                    
+                    // 转换成字符串
+                    result = encoding.GetString(src.ToArray<byte>());
                     break;
+                    
                 case SendMode.Hex:
-                    foreach (var item in text)
+                    
+                    byte[] byteStr = encoding.GetBytes(text.ToCharArray());
+
+                    foreach (var item in byteStr)
                     {
                         result += Convert.ToString(item, 16).ToUpper() + " ";
                     }
@@ -73,7 +76,7 @@ namespace WPFSerialAssistant
                     break;
             }
 
-            return result;
+            return result.Trim();
         }
 
     }
